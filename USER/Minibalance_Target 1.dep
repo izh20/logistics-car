@@ -1,0 +1,216 @@
+Dependencies for Project 'Minibalance', Target 'Target 1': (DO NOT MODIFY !)
+F (.\startup_stm32f10x_md.s)(0x532BB228)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include--list ..\obj\startup_stm32f10x_md.lst --xref -o ..\obj\startup_stm32f10x_md.o --depend ..\obj\startup_stm32f10x_md.d)
+F (.\Minibalance.c)(0x55CDF672)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\minibalance.o --omf_browse ..\obj\minibalance.crf --depend ..\obj\minibalance.d)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+F (..\SYSTEM\delay\delay.c)(0x5584D9A5)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\delay.o --omf_browse ..\obj\delay.crf --depend ..\obj\delay.d)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+F (..\SYSTEM\sys\sys.c)(0x5584D9A5)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\sys.o --omf_browse ..\obj\sys.crf --depend ..\obj\sys.d)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+F (..\SYSTEM\usart\usart.c)(0x5584D9A5)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+F (..\HARDWARE\IIC\IOI2C.c)(0x559E0F22)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\ioi2c.o --omf_browse ..\obj\ioi2c.crf --depend ..\obj\ioi2c.d)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+F (..\HARDWARE\TIMER\timer.c)(0x55CDEF5D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\timer.o --omf_browse ..\obj\timer.crf --depend ..\obj\timer.d)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+F (..\BALANCE\CONTROL\control.c)(0x55CDF52F)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\control.o --omf_browse ..\obj\control.crf --depend ..\obj\control.d)
+I (..\BALANCE\CONTROL\control.h)(0x55CDEEB5)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+I (..\BALANCE\filter\filter.h)(0x559E0F22)
+F (..\BALANCE\DMP\inv_mpu.c)(0x559E0F22)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\inv_mpu.o --omf_browse ..\obj\inv_mpu.crf --depend ..\obj\inv_mpu.d)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+F (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.c)(0x559E0F22)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\inv_mpu_dmp_motion_driver.o --omf_browse ..\obj\inv_mpu_dmp_motion_driver.crf --depend ..\obj\inv_mpu_dmp_motion_driver.d)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\MPU6050\mpu6050.h)(0x55CDF197)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
+F (..\BALANCE\filter\filter.c)(0x559E0F22)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\filter.o --omf_browse ..\obj\filter.crf --depend ..\obj\filter.d)
+I (..\BALANCE\filter\filter.h)(0x559E0F22)
+F (..\BALANCE\MPU6050\MPU6050.c)(0x55CDF35D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\HARDWARE\TIMER -I..\BALANCE\CONTROL -I..\HARDWARE\IIC -I..\BALANCE\CONTROL -I..\BALANCE\DMP -I..\BALANCE\filter -I..\BALANCE\MPU6050 -I..\BALANCE\controls-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-DSTM32F10X_MD -DSTM32F10X_MD -o ..\obj\mpu6050.o --omf_browse ..\obj\mpu6050.crf --depend ..\obj\mpu6050.d)
+I (..\BALANCE\MPU6050\MPU6050.h)(0x55CDF197)
+I (..\SYSTEM\sys\sys.h)(0x55CDEF51)
+I (..\SYSTEM\sys\stm32f10x.h)(0x4F1E2E3C)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm3.h)(0x512C1E62)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BA6374)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C1E62)
+I (..\SYSTEM\sys\system_stm32f10x.h)(0x4F1E2E3C)
+I (..\SYSTEM\delay\delay.h)(0x5584D9A5)
+I (..\SYSTEM\usart\usart.h)(0x5584D9A5)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x52FDD27E)
+I (..\HARDWARE\TIMER\timer.h)(0x558B6AF7)
+I (..\HARDWARE\IIC\ioi2c.h)(0x559E0F22)
+I (..\BALANCE\DMP\inv_mpu.h)(0x559E0F23)
+I (..\BALANCE\DMP\inv_mpu_dmp_motion_driver.h)(0x559E0F23)
+I (..\BALANCE\DMP\dmpKey.h)(0x50CA9A0C)
+I (..\BALANCE\DMP\dmpmap.h)(0x50CA9A0C)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FDD27E)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x52FDD27E)
