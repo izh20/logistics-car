@@ -44,7 +44,7 @@ void TIM1_UP_IRQHandler(void)
 		
 			//Get_Angle(Way_Angle);                                    //===更新姿态	
 			Read_DMP();
-		if(cnt==600)
+		if(cnt==200)
 		{
 			Yaw_target=Yaw;
 			begin_flag=1;
@@ -54,11 +54,16 @@ void TIM1_UP_IRQHandler(void)
 		{
 			car_mode_select();//小车x巡线，y巡线模式选择
 			PWM_OUTPUT=straight_control(Yaw,Yaw_target);//角度闭环，用于走直线
-			//chassis_angle_control();//用于前进，后退，左平移，右平移的程序，有角度闭环
+			chassis_angle_control();//用于前进，后退，左平移，右平移的程序，有角度闭环
 			infr_control();//巡线控制程序，用于x，y轴循迹
 			car_locate();//小车黑线检测程序，用于室内定位
+			//car_status.task_mode=FORWARD;
 			//car_locate_control(X_target,Y_target);	
-			task_planning();
+			//car_locate_control(3,1);
+			//task_planning();
+			//vision_control();//视觉控制
+			
+			
 			
 			vision_status_detection();
 			
@@ -67,7 +72,104 @@ void TIM1_UP_IRQHandler(void)
 	}       	
 	  
 } 
-
+extern uint16_t qr_unpack;//二维码解码数据
+char qr_line=0;
+char forward_flag=0;
+char qr_location_arrive_flag=0;
+char qr_right_translation_flag=0;//右平移标志位
+char qr_task_finish=0;//qr任务识别标志位
+char qr_back_flag=0;
+void go_to_scan_QR()
+{
+	if(forward_flag==0)
+	{
+		car_status.task_mode=LEFT_TRANSLATION;
+	}
+	if(qr_line>2&&forward_flag==0)
+	{
+		forward_flag=1;
+		car_status.task_mode=RIGHT_TRANSLATION;
+		delay_ms(100);
+		car_status.task_mode=STOP;
+		delay_ms(100);
+	}
+	if(forward_flag==1)
+	{
+			car_status.task_mode=FORWARD;
+		forward_flag=2;
+	}
+//	if(x_axis>5&&qr_location_arrive_flag==0)
+//	{
+//		CAR_SPEED=1200;//降速
+//	}
+		if(x_axis==6&&qr_location_arrive_flag==0)//到达二维码区域
+		{
+			
+			car_status.task_mode=BACK;	
+			
+		}
+	
+	
+		if(qr_right_translation_flag==1)
+			{
+				
+				car_status.task_mode=FORWARD;//刹车
+				delay_ms(200);
+				car_status.task_mode=STOP;
+				delay_ms(200);
+				qr_location_arrive_flag=1;	
+				qr_right_translation_flag=2;
+			}
+		if(qr_location_arrive_flag==1)//在二维码区域来回走动
+		{
+			if(qr_back_flag==0)//避免里面的程序一直运行
+			{
+				CAR_SPEED=600;
+				Yaw_target=180;
+				car_status.task_mode=RIGHT_TRANSLATION;//右平移
+			}
+			if(qr_back_flag==1)
+			{
+				//CAR_SPEED=800;
+				car_status.task_mode=LEFT_TRANSLATION;//左平移
+				delay_ms(100);
+				qr_back_flag=2;
+			}
+			if(qr_back_flag==2)
+			{
+				CAR_SPEED=1200;
+				Yaw_target=180;
+				car_status.task_mode=BACK;
+				qr_task_finish=1;
+				qr_location_arrive_flag=3;
+			}
+		}
+		
+}
+char grab_flag=0;
+char material_arrive_flag=0;
+void grab_task()//抓取任务
+{
+	if(qr_task_finish==1)
+	{
+		if(x_axis<=4&&grab_flag==0)
+		{
+			CAR_SPEED=700;//即将接近目标，降速
+			if(material_arrive_flag==1)
+			{
+				car_status.task_mode=FORWARD;
+				delay_ms(100);
+				grab_flag=1;
+			}
+		}
+		if(grab_flag==1)//在这里进行抓取任务 待写
+		{
+//			Yaw_target=180;//右移不循线  用陀螺仪走直线
+//			car_status.task_mode=RIGHT_TRANSLATION;
+				car_status.task_mode=STOP;	
+		}
+	}
+}
 
 
 
@@ -331,7 +433,7 @@ void Get_Angle(u8 way)
 void param_init(void)
 {
 	
-  Straight_KP=32;
+  Straight_KP=45;
   Straight_KI=0;
 	Yaw=0;
 	Yaw_target=0;
@@ -357,10 +459,10 @@ int straight_control(float yaw,float yaw_target)   //如果车向左偏时，Bias小于0
 	 static int Bias,Pwm_output,Last_bias;
 	 Bias=(int)(yaw_target-yaw);                //计算偏差
 	
-	if(Bias>20)
-		Bias=20;
-	if(Bias<-20)
-		Bias=-20;
+	if(Bias>25)
+		Bias=25;
+	if(Bias<-25)
+		Bias=-25;
 	 Pwm_output+=Straight_KP*(Bias-Last_bias)+Straight_KI*Bias;   //增量式PI控制器
 //	if(Bias>0)													//当小车向右转时，屏蔽小车右轮控制
 //		Pwm_output=0;

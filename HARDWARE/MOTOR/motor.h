@@ -29,7 +29,7 @@ enum
 };
 
 extern CAR_STATUS_t	car_status;
-
+extern int CAR_SPEED;    //小车速度
 #define chassis_RB_1 PBout(9) // PA4  右后轮
 #define chassis_RB_2 PBout(8) // PA4
 #define chassis_LB_1 PBout(7) // PA4	左后轮

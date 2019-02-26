@@ -24,6 +24,7 @@
 4.USART2 无线串口通讯
 	TX			PA2			
 	RX			PA3
+	
 5.USART3
 	TX			PB10
 	RX			PB11
@@ -88,16 +89,17 @@ int main(void)
 	
 //EXTI_Init();											//红外传感器外部中断，用于定位
  uart2_init(36,57600);					//初始化串口2
- Timer1_Init(2999,71);           //=====2MS进一次中断服务函数
+ Timer1_Init(4999,71);           //=====2MS进一次中断服务函数
 	
 	while(1)
 		{
 			OLED_ShowNumber(0,10,(int)Yaw,3,12);
 			OLED_ShowNumber(30,10,(int)Yaw_target,3,12);
-			OLED_ShowNumber(60,10,(int)wheel_flag,3,12);
+			OLED_ShowNumber(45,10,(int)wheel_flag,2,12);
+			OLED_ShowNumber(60,10,(int)qr_line,2,12);
 			OLED_ShowNumber(0,25,x_axis,1,12);
 			OLED_ShowNumber(15,25,y_axis,1,12); 
-			OLED_ShowNumber(30,25,black_flag,1,12);	
+			//OLED_ShowNumber(30,25,black_flag,1,12);	
 			
 			//OLED_ShowNumber(60,25,target_x_err,3,12);
 			//OLED_ShowNumber(75,25,qr_code_flag,1,12);
@@ -119,8 +121,11 @@ int main(void)
 //	  	pca_setpwm1(2,0,degree2duty(18));  //140 - 0  300 - 90
 //			
 			//pca_setpwm1(3,0,degree2duty(80));
-			shanwai_send();
+			//shanwai_send();
 				//printf("卡 尔 曼 滤 波 输 出 Pitch:  %f\r\n  ",Angle_Balance);  //y 
-		
+//			go_to_scan_QR();
+//			grab_task();
+			//car_status.task_mode=BACK;
+			
 		} 
 }

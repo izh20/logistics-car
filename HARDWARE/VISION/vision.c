@@ -1,5 +1,6 @@
 #include "vision.h"
 
+#define vision_target_x 160 //视觉x轴目标
 VISION_STATUS vision_status;
 ///**************************************************************************
 //函数功能：串口2接收中断
@@ -30,7 +31,7 @@ void USART2_IRQHandler(void)
 //			
 //		}
 		//printf("%x\n",USART2_Date[1]);
-		//usart2_send(Res);
+		usart2_send(Res);
 		counter++;
 		
 		if(counter==4)
@@ -51,7 +52,7 @@ void USART2_IRQHandler(void)
 *形    参:
 *返 回 值: 
 **********************************************************************************************************/
-uint16_t qr_unpack;//二维码解码数据
+uint16_t qr_unpack=0;//二维码解码数据
 uint8_t qr_code=0;//二维码的数据
 uint8_t qr_code_flag=1;//识别标志位 1为未识别，0为识别成功
 uint16_t target_x_err;//色块x轴误差
@@ -102,12 +103,53 @@ long get_tick()
 	tick++;
 	return tick;
 }
-
+/**********************************************************************************************************
+*函 数 名: vision_status_detection
+*功能说明: 视觉信号状态机检测
+*形    参:
+*返 回 值: 
+**********************************************************************************************************/
 void vision_status_detection()
 {
 	if(get_tick()-vision_time>80)
 			{
-				vision_status.block_recognition_status=UNIDENTIFICATION;//有视觉信息，色块识别正常
-				OLED_ShowString(80,10,"N");
+				vision_status.block_recognition_status=UNIDENTIFICATION;//有视觉信息，色块识失败
+				OLED_ShowString(90,10,"N");//在显示屏上显示
 			}
 }
+
+void vision_control()
+{
+	
+	if(vision_status.block_recognition_status==RECOGNITION)//如果识别到色块
+	{
+		CAR_SPEED=vision_pid_control();//当识别到色块时进行PID计算
+		if(target_x_err>vision_target_x)
+			car_status.task_mode=BACK;
+		else if(target_x_err<vision_target_x)
+			car_status.task_mode=FORWARD;
+		else
+			car_status.task_mode=STOP;
+	}
+	else
+	{
+		CAR_SPEED=800;//恢复初始速度
+		car_status.task_mode=STOP;
+	}
+	
+}
+
+
+
+int vision_kp=6;
+int vision_pid_control()
+{
+	//int vision_target_x=160;
+	int vision_output,err;
+	err=abs(vision_target_x-target_x_err);
+	vision_output=vision_kp*err;
+	if(vision_output)
+	return vision_output;
+}
+
+

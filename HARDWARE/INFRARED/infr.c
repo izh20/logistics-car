@@ -7,7 +7,7 @@
 #define Y_INFR_LEFT	 PBin(15)
 #define INFR_DETECTION PAin(1)
 
-#define YAW_DELTA    0.02
+#define YAW_DELTA    0.03//0.034
 
 //偏航角增量
 char single_flag=0,double_flag=0;
@@ -85,6 +85,11 @@ void  EXTI15_10_IRQHandler()
 				x_location_arrive_flag=1;
 				//car_status.task_mode=RIGHT_TRANSLATION;
 			}
+			delay_ms(18);//消抖
+			if(x_axis==3&&X_INFR_LEFT==0&&car_status.task_mode==BACK)//识别二维码后，判断车是否走到物料前方
+				material_arrive_flag=1;
+			if(x_axis==6&&X_INFR_LEFT==1&&car_status.task_mode==BACK)//到达二位码所对应坐标，此标志位为向右移动
+				qr_right_translation_flag=1;
 			EXTI->PR=1<<13;
 		}
 		
@@ -95,6 +100,14 @@ void  EXTI15_10_IRQHandler()
 				y_location_arrive_flag=1;
 				//car_status.task_mode=STOP;
 			}
+			
+			delay_ms(18);//消抖
+			if(Y_INFR_RIGHT==1)
+			{
+			qr_line++;
+			}
+			if(x_axis==6&&y_axis==0&&Y_INFR_RIGHT==1)//接近qr坐标时后退
+				qr_back_flag=1;
 			EXTI->PR=1<<14;
 		}
 		
@@ -112,7 +125,7 @@ void  EXTI15_10_IRQHandler()
 int black_line=0,black_flag=0;//当为1时，表示检测到单线，为2时表示检测到双线
 void EXTI1_IRQHandler(void)
 {
-	delay_ms(10);//消抖
+	delay_ms(18);//消抖
 	if(INFR_DETECTION==1)
 	{
 		black_line++;
@@ -129,33 +142,47 @@ void EXTI1_IRQHandler(void)
 **************************************************************************/
 void infr_control()
 {
-	if(car_status.line_patrol_mode==Y_LINE_PATROL) //Y轴巡线模式  车的前后  mode=2
+	if(car_status.line_patrol_mode==Y_LINE_PATROL&&car_status.running_mode==FORWARD) //Y轴巡线模式  车的前  mode=2
 	{
 		if(Y_INFR_RIGHT==0&&Y_INFR_LEFT==0)									//infrared遇到黑线输出低电平
 		{
-			
-			//chassis_back();
 		}
 		if(Y_INFR_LEFT==1&&Y_INFR_RIGHT==1)
 		{
-			//chassis_back();
-			//chassis_forwrd();
+			
 		}
 		if(Y_INFR_LEFT==0&&Y_INFR_RIGHT==1)
 		{
 			Yaw_target-=YAW_DELTA;
-			//chassis_turn_left();
-			//chassis_turn_left();
+			
 		}
 		if(Y_INFR_LEFT==1&&Y_INFR_RIGHT==0)
 		{
 			Yaw_target+=YAW_DELTA;
-			//chassis_turn_right();
-			//chassis_turn_left();
 			
 		}
 	}
-	if(car_status.line_patrol_mode==X_LINE_PATROL) //X轴巡线模式  mode=1
+//	if(car_status.line_patrol_mode==Y_LINE_PATROL&&car_status.running_mode==BACK) //Y轴巡线模式  车的后  mode=2
+//	{
+//		if(Y_INFR_RIGHT==0&&Y_INFR_LEFT==0)									//infrared遇到黑线输出低电平
+//		{
+//		}
+//		if(Y_INFR_LEFT==1&&Y_INFR_RIGHT==1)
+//		{
+//			
+//		}
+//		if(Y_INFR_LEFT==0&&Y_INFR_RIGHT==1)
+//		{
+//			Yaw_target+=YAW_DELTA;
+//			
+//		}
+//		if(Y_INFR_LEFT==1&&Y_INFR_RIGHT==0)
+//		{
+//			Yaw_target-=YAW_DELTA;
+//			
+//		}
+//	}
+	if(car_status.line_patrol_mode==X_LINE_PATROL&&car_status.running_mode==LEFT_TRANSLATION) //X轴巡线模式  mode=1
 	{
 		if(X_INFR_RIGHT==0&&X_INFR_LEFT==0)									//infrared遇到黑线输出低电平
 		{
@@ -174,6 +201,25 @@ void infr_control()
 			Yaw_target+=YAW_DELTA;
 		}
 	}
+//	if(car_status.line_patrol_mode==X_LINE_PATROL&&car_status.running_mode==RIGHT_TRANSLATION) //X轴巡线模式  mode=1
+//	{
+//		if(X_INFR_RIGHT==0&&X_INFR_LEFT==0)									//infrared遇到黑线输出低电平
+//		{
+//			
+//		}
+//		if(X_INFR_LEFT==1&&X_INFR_RIGHT==1)
+//		{
+//			
+//		}
+//		if(X_INFR_LEFT==0&&X_INFR_RIGHT==1)
+//		{
+//			Yaw_target+=YAW_DELTA;
+//		}
+//		if(X_INFR_LEFT==1&&X_INFR_RIGHT==0)
+//		{
+//			Yaw_target-=YAW_DELTA;
+//		}
+//	}
 	if(car_status.line_patrol_mode==STOP_LINE_PATROL) //停止模式
 	{
 		set_motor_pwm(0,0,0,0);

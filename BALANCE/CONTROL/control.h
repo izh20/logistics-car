@@ -21,7 +21,10 @@ extern float Straight_KI;
 extern float yaw_target;
 extern int PWM_OUTPUT;
 extern float Yaw_target;
-
+extern char qr_line;
+extern char material_arrive_flag;
+extern char qr_right_translation_flag;//右平移标志位
+extern char qr_back_flag;
 extern u8 x_axis,y_axis;
 extern u8 X_target,Y_target;
 extern u8 QR_code_location;
@@ -35,4 +38,5 @@ void car_mode_select(void);
 void car_locate(void);
 void car_locate_control(u8 x_target,u8 y_target);
 void task_planning(void);
+void go_to_scan_QR(void);
 #endif

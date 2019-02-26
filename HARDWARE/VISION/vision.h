@@ -16,6 +16,7 @@ enum
 extern uint8_t  USART2_RX_BUF;
 extern uint32_t vision_time;//用于检测使视觉识别是否离线
 extern VISION_STATUS vision_status;
+extern uint16_t qr_unpack;//二维码解码数据
 extern uint8_t qr_code;//二维码的数据
 extern uint8_t qr_code_flag;//识别标志位 1为未识别，0为识别成功
 extern uint16_t target_x_err;//色块x轴误差
@@ -24,5 +25,8 @@ void get_vision_data(void);
 int QR_Data_Transform(uint8_t code);
 long get_tick(void);
 void vision_status_detection(void);
+
+void vision_control(void);
+int vision_pid_control(void);
 #endif
 

@@ -1,8 +1,9 @@
 #include "motor.h"
 //PB6	PB7	PB8	PB9	PC13	PC14	PC15	PA0
 
-#define CAR_SPEED 800 //小车速度
+//#define CAR_SPEED 600//小车速度
 #define CAR_STOP  0   //小车停止
+int CAR_SPEED=1200;    //小车速度
  /**************************************************************************
 作者：周恒
 GitHub：
