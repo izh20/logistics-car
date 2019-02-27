@@ -22,7 +22,7 @@ extern uint8_t qr_code_flag;//识别标志位 1为未识别，0为识别成功
 extern uint16_t target_x_err;//色块x轴误差
 //extern uint8_t USART2_Date[4];//串口2接收到的数据
 void get_vision_data(void);
-int QR_Data_Transform(uint8_t code);
+int Data_Transform(uint8_t code);
 long get_tick(void);
 void vision_status_detection(void);
 

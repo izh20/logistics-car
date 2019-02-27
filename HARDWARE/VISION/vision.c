@@ -25,13 +25,14 @@ void USART2_IRQHandler(void)
 			counter=0;
 			
 		}
-//		if(counter == 1 && USART2_Date[1] != 0xa5)
-//		{
-//			counter=0;
-//			
-//		}
+		if(counter == 1 && USART2_Date[1] != 0xa5)
+		{
+			counter=0;
+			
+		}
 		//printf("%x\n",USART2_Date[1]);
-		usart2_send(Res);
+		
+		//usart2_send(Res);
 		counter++;
 		
 		if(counter==4)
@@ -53,31 +54,83 @@ void USART2_IRQHandler(void)
 *返 回 值: 
 **********************************************************************************************************/
 uint16_t qr_unpack=0;//二维码解码数据
+uint16_t block_unpack=0;//色块顺序  红1绿2蓝3
 uint8_t qr_code=0;//二维码的数据
 uint8_t qr_code_flag=1;//识别标志位 1为未识别，0为识别成功
 uint16_t target_x_err;//色块x轴误差
-uint16_t sum=0;//校验和
+//uint16_t sum=0;//校验和
+uint8_t block_code;
+int qr_first,qr_second,qr_third;//第一次抓取物块的颜色
 void get_vision_data()
 {
 	if(USART2_RX_BUF==1)
 	{
 		USART2_RX_BUF=0;
-		target_x_err=(USART2_Date[1] | USART2_Date[2]<<8);
-		qr_code=USART2_Date[3];
-		qr_unpack=QR_Data_Transform(qr_code);
-		OLED_ShowNumber(45,25,target_x_err,3,12);
-		OLED_ShowNumber(70,25,qr_unpack,3,12);
+		//target_x_err=(USART2_Date[1] | USART2_Date[2]<<8);
+		qr_code=USART2_Date[2];
+		block_code=USART2_Date[3];
+		block_unpack=Data_Transform(block_code);
+		qr_unpack=Data_Transform(qr_code);
+		qr_first=qr_unpack/100;//第一次抓取物块的颜色
+		qr_second=qr_unpack/10%10;//第二次抓取物块的颜色
+		qr_third=qr_unpack%10;//第三次抓取物块的颜色
+		OLED_ShowNumber(45,25,qr_unpack,3,12);
+		OLED_ShowNumber(70,25,block_unpack,3,12);
 	}
 	
 }
 /**********************************************************************************************************
-*函 数 名: QR_Data_Transform
-*功能说明: 对qr解码
+*函 数 名: grab_unpack
+*功能说明: 对抓取顺序解码 
 *形    参:
 *返 回 值: 
 **********************************************************************************************************/
 
-int QR_Data_Transform(uint8_t code)
+void grab_unpack(void)
+{
+	if(qr_first==block_unpack/100)//抓左边
+	{
+		
+	}
+	if(qr_first==block_unpack/10%10)//抓中间
+	{
+		
+	}
+	if(qr_first==block_unpack%10)//抓右边
+	{
+		
+	}
+}
+/**********************************************************************************************************
+*函 数 名: put_material
+*功能说明: 放物料顺序  1是红，2是绿，3是蓝
+*形    参:
+*返 回 值: 
+**********************************************************************************************************/
+void put_material()
+{
+	if(qr_first==1)//放右边
+	{
+		
+	}
+	if(qr_first==2)//放中间
+	{
+		
+	}
+	if(qr_first==3)//放左边
+	{
+		
+	}
+	
+}
+/**********************************************************************************************************
+*函 数 名: Data_Transform
+*功能说明: 对数据解码
+*形    参:
+*返 回 值: 
+**********************************************************************************************************/
+
+int Data_Transform(uint8_t code)
 {
 	uint16_t qr;//qr解码
 	switch(code)

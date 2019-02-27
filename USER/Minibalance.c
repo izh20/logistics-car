@@ -123,8 +123,8 @@ int main(void)
 			//pca_setpwm1(3,0,degree2duty(80));
 			//shanwai_send();
 				//printf("¿¨ ¶û Âü ÂË ²¨ Êä ³ö Pitch:  %f\r\n  ",Angle_Balance);  //y 
-//			go_to_scan_QR();
-//			grab_task();
+			go_to_scan_QR();
+			grab_task();
 			//car_status.task_mode=BACK;
 			
 		} 
