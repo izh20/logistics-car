@@ -6,7 +6,7 @@ class PCASG90:
     SERVO_PWM_MIN_PW = config['SERVO_PWM_MIN_PW']
     SERVO_PWM_MAX_PW = config['SERVO_PWM_MAX_PW']
 
-    def __init__(self, pca9685, servo_idx, kp=11.11, b=500, min_angle=0, max_angle=180):
+    def __init__(self, pca9685, servo_idx, kp=7.41, b=500, min_angle=0, max_angle=270):
         '''
         舵机的构造器
         '''
@@ -27,7 +27,7 @@ class PCASG90:
         '''
         self.kp = kp
         self.b = b
-    
+
     def set_angle(self, angle):
         '''
         设定角度
@@ -48,7 +48,7 @@ class PCASG90:
         获取当前的舵机角度
         '''
         return self._angle
-    
+
     def pulse_width(self, pw):
         '''
         设置舵机控制信号的脉宽
@@ -70,7 +70,7 @@ class PCASG90:
         注：脉宽的单位是ns
         '''
         return int(pw / self.SERVO_CONTROL_PERIOD * self.PCA9685_PWM_FULL_DUTY)
-    
+
     def duty2pw(self, duty):
         '''
         将占空比转换为脉宽

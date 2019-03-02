@@ -10,7 +10,7 @@
 
 /*******************************物流小车引脚定义 begin************************/
 /*
-1.mpu6050 PCA9685驱动				
+1.mpu6050 PCA9685驱动(IIC控制两个模块)	
 	SDA  PA8
 	SCL  PA11
 2.OLED
@@ -18,13 +18,13 @@
 	DC			PA15
 	SCL			PB5
 	SDA			PB4
-3.USART1	openmv通讯
+3.USART1	
 	TX:			PA10
 	RX:			PA9
-4.USART2 无线串口通讯
+4.USART2 openmv通讯
 	TX			PA2			
 	RX			PA3
-	
+					PA12(openmv启动引脚，低电平启动openmv)
 5.USART3
 	TX			PB10
 	RX			PB11
@@ -37,28 +37,32 @@
 					PB14
 					PB15
 		外部中断 红外传感器
-					PA1
-					PA12
+					PA1(用于黑线定位)
 6.key			PA5			
 7.led			PA4
-8.电机驱动
+8.电机驱动(TB6612芯片，最高耐压10V)
 					PC13
 					PC14
 					PC15
 					PA0
+					PB6
+					PB7
+					PB8
+					PB9
 	电机PWM调速	TIM3 CH1-CH4
 					PB0
 					PB1
 					PA6
 					PA7				
-9.
+
 
 
 */
 /******************************物流小车引脚定义 end************************/
 
 
-
+extern uint16_t qr_unpack;//二维码解码数据
+extern uint16_t block_unpack;//色块顺序  红1绿2蓝3
 u8 Way_Angle=2;    
 float Angle_Balance; 
 int main(void)
@@ -73,8 +77,8 @@ int main(void)
 	IIC_Init();                     //模拟IIC初始化
 	
 	/*************PCA初始化 begin****************/
-//	pca_reset1();
-//	pca_setfreq1(50);
+	pca_reset1();
+	pca_setfreq1(50);
 	
 	/*************PCA初始化 end****************/
   MPU6050_initialize();           //=====MPU6050初始化	
@@ -104,27 +108,30 @@ int main(void)
 			//OLED_ShowNumber(60,25,target_x_err,3,12);
 			//OLED_ShowNumber(75,25,qr_code_flag,1,12);
 			
-			OLED_ShowNumber(0,45,(int)QR_code_location,1,12);
-			OLED_ShowNumber(15,45,(int)material_location,1,12);
-			OLED_ShowNumber(30,45,(int)location_arrive_finish_flag,1,12);
-			OLED_ShowNumber(45,45,(int)x_location_arrive_flag,1,12);
-			OLED_ShowNumber(60,45,(int)y_location_arrive_flag,1,12);
-			OLED_ShowNumber(80,45,(int)X_target,1,12);
-			OLED_ShowNumber(95,45,(int)Y_target,1,12);
+//			OLED_ShowNumber(0,45,(int)QR_code_location,1,12);
+//			OLED_ShowNumber(15,45,(int)material_location,1,12);
+//			OLED_ShowNumber(30,45,(int)location_arrive_finish_flag,1,12);
+//			OLED_ShowNumber(45,45,(int)x_location_arrive_flag,1,12);
+//			OLED_ShowNumber(60,45,(int)y_location_arrive_flag,1,12);
+//			OLED_ShowNumber(80,45,(int)X_target,1,12);
+//			OLED_ShowNumber(95,45,(int)Y_target,1,12);
 			//OLED_ShowString(00,40,"VOLTAGE");
+			OLED_ShowNumber(45,25,qr_unpack,3,12);
+			OLED_ShowNumber(70,25,block_unpack,3,12);
 			OLED_Refresh_Gram();
 			/***************舵机 0度对应占空比55/4096 180度对应占空比250/4096 ********************/
 			/**** joint1 0度对应于舵机138度； joint1 -135度对应于舵机30度          **/
 			/**** joint2 0度对应于舵机90度； joint2 90度对应于舵机18度          **/
-//			pca_setpwm1(0,0,200);    
-				//pca_setpwm1(1,0,degree2duty(30));
-//	  	pca_setpwm1(2,0,degree2duty(18));  //140 - 0  300 - 90
+			pca_setpwm1(0,0,degree2duty_270(80));    
+			pca_setpwm1(1,0,degree2duty_180(170));
+	  	pca_setpwm1(2,0,degree2duty_180(170));  //140 - 0  300 - 90
 //			
 			//pca_setpwm1(3,0,degree2duty(80));
 			//shanwai_send();
 				//printf("卡 尔 曼 滤 波 输 出 Pitch:  %f\r\n  ",Angle_Balance);  //y 
 			go_to_scan_QR();
 			grab_task();
+			
 			//car_status.task_mode=BACK;
 			
 		} 

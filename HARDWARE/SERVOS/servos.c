@@ -24,11 +24,17 @@ void servos_control()
 off=a*degree+b   (0,55),(180,250)
 a=77/512   b=103
 */
-#define a 2.272222f//1.083333f
+#define a 1.514815f//1.083333f
 #define b 102
-int degree2duty(float degree)
+int degree2duty_270(float degree)
 {
 	return (a*degree+b);
+}
+#define a_180 2.272222//1.083333f
+#define b_180 102
+int degree2duty_180(float degree)
+{
+	return (a_180*degree+b_180);
 }
 ///*
 //off=a*degree+b   (0,140),(90,300)

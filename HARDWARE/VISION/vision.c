@@ -74,8 +74,7 @@ void get_vision_data()
 		qr_first=qr_unpack/100;//第一次抓取物块的颜色
 		qr_second=qr_unpack/10%10;//第二次抓取物块的颜色
 		qr_third=qr_unpack%10;//第三次抓取物块的颜色
-		OLED_ShowNumber(45,25,qr_unpack,3,12);
-		OLED_ShowNumber(70,25,block_unpack,3,12);
+		
 	}
 	
 }
@@ -90,15 +89,15 @@ void grab_unpack(void)
 {
 	if(qr_first==block_unpack/100)//抓左边
 	{
-		
+		OLED_ShowString(0,45,"l");
 	}
 	if(qr_first==block_unpack/10%10)//抓中间
 	{
-		
+		OLED_ShowString(0,45,"m");
 	}
 	if(qr_first==block_unpack%10)//抓右边
 	{
-		
+		OLED_ShowString(0,45,"r");
 	}
 }
 /**********************************************************************************************************

@@ -124,7 +124,7 @@ void go_to_scan_QR()
 		{
 			if(qr_back_flag==0)//避免里面的程序一直运行
 			{
-				CAR_SPEED=600;
+				CAR_SPEED=700;
 				Yaw_target=180;
 				car_status.task_mode=RIGHT_TRANSLATION;//右平移
 			}
@@ -137,9 +137,11 @@ void go_to_scan_QR()
 			}
 			if(qr_back_flag==2)
 			{
-				CAR_SPEED=1200;
+				
 				Yaw_target=180;
 				car_status.task_mode=BACK;
+				if(x_axis<5)
+					CAR_SPEED=1200;//离开二维码区域后加速
 				qr_task_finish=1;
 				qr_location_arrive_flag=3;
 			}
@@ -154,7 +156,7 @@ void grab_task()//抓取任务
 	{
 		if(x_axis<=4&&grab_flag==0)
 		{
-			CAR_SPEED=700;//即将接近目标，降速
+			CAR_SPEED=800;//即将接近目标，降速
 			if(material_arrive_flag==1)
 			{
 				car_status.task_mode=FORWARD;
@@ -167,6 +169,7 @@ void grab_task()//抓取任务
 //			Yaw_target=180;//右移不循线  用陀螺仪走直线
 //			car_status.task_mode=RIGHT_TRANSLATION;
 				car_status.task_mode=STOP;	
+				grab_unpack();
 		}
 	}
 }
