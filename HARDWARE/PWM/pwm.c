@@ -32,6 +32,22 @@ void TIM3_PWM_init(int arr,int psc)
 
 void set_motor_pwm(int LF,int RF,int LB,int RB)
 {
+	if(LF>1800)
+		LF=1800;
+	if(LF<0)
+		LF=0;
+	if(RF>1800)
+		RF=1800;
+	if(RF<0)
+		RF=0;
+	if(LB>1800)
+		LB=1800;
+	if(LB<0)
+		LB=0;
+	if(RB>1800)
+		RB=1800;
+	if(RB<0)
+		RB=0;
 	TIM3->CCR1=LB;
 	TIM3->CCR2=RB;
 	TIM3->CCR3=RF;

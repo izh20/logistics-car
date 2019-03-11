@@ -71,7 +71,7 @@ int main(void)
 	delay_init(72);                 //延时初始化
 	JTAG_Set(JTAG_SWD_DISABLE);     //=====关闭JTAG接口
 	JTAG_Set(SWD_ENABLE);           //=====打开SWD接口 可以利用主板的SWD接口调试
-	uart_init(72,115200);           //初始化串口1
+	uart_init(72,9600);           //初始化串口1
 	
 	TIM3_PWM_init(1999,71);					//底盘PWM调速初始化
 	IIC_Init();                     //模拟IIC初始化
@@ -116,15 +116,15 @@ int main(void)
 //			OLED_ShowNumber(80,45,(int)X_target,1,12);
 //			OLED_ShowNumber(95,45,(int)Y_target,1,12);
 			//OLED_ShowString(00,40,"VOLTAGE");
-			OLED_ShowNumber(45,25,qr_unpack,3,12);
+//			OLED_ShowNumber(45,25,qr_unpack,3,12);
 			OLED_ShowNumber(70,25,block_unpack,3,12);
 			OLED_Refresh_Gram();
 			/***************舵机 0度对应占空比55/4096 180度对应占空比250/4096 ********************/
 			/**** joint1 0度对应于舵机138度； joint1 -135度对应于舵机30度          **/
 			/**** joint2 0度对应于舵机90度； joint2 90度对应于舵机18度          **/
-			pca_setpwm1(0,0,degree2duty_270(80));    
-			pca_setpwm1(1,0,degree2duty_180(170));
-	  	pca_setpwm1(2,0,degree2duty_180(170));  //140 - 0  300 - 90
+			pca_setpwm1(0,0,degree2duty_270(90));    
+			pca_setpwm1(1,0,degree2duty_180(90));
+	  	pca_setpwm1(2,0,degree2duty_180(90));  //140 - 0  300 - 90
 //			
 			//pca_setpwm1(3,0,degree2duty(80));
 			//shanwai_send();

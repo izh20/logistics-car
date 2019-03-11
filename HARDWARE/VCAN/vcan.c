@@ -6,8 +6,8 @@
 int16_t  wave_form_data[6] = {0};
 void send_data(uint8_t date)
 {
-				USART1->DR=date;
-				while((USART1->SR&0X40)==0);//等待发送结束
+				USART2->DR=date;
+				while((USART2->SR&0X40)==0);//等待发送结束
 
 }
 void shanwai_send_wave_form(void)

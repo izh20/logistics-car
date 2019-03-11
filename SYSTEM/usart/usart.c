@@ -50,5 +50,68 @@ void uart_init(u32 pclk2,u32 bound)
 	//波特率设置
  	USART1->BRR=mantissa; // 波特率设置	 
 	USART1->CR1|=0X200C;  //1位停止,无校验位.
+	//使能接收中断
+	USART1->CR1|=1<<8;    //PE中断使能
+	USART1->CR1|=1<<5;    //接收缓冲区非空中断使能	    	
+	MY_NVIC_Init(0,0,USART1_IRQn,2);//组2，最低优先级 
+}
 
+/**************************************************************************
+函数功能：串口1接收中断
+入口参数：无
+返回  值：无
+**************************************************************************/
+uint8_t USART1_Date[4]={0};//串口2接收到的数据
+uint8_t USART1_RX_BUF=0;
+uint16_t qr_codes=0;
+//u16 USART_RX_STA=0;       //接收状态标记
+u8 i=0;
+int USART1_IRQHandler(void)
+{	
+	if(USART1->SR&(1<<5))//接收到数据
+	{	      
+				u8 temp;
+				temp=USART1->DR;
+		//send_data(temp);
+//		 if((USART_RX_STA&0x8000)==0)//接收未完成
+//		 {
+//			 if(USART_RX_STA&0x4000)//接收到了0x0d
+//			{
+//				USART_RX_STA|=0x8000;	//接收完成了 
+//			}else
+//			{
+//				if(temp==0x0d)USART_RX_STA|=0x4000;
+//				else
+//				{
+//					USART_RX_BUF[USART_RX_STA&0X3FFF]=res;
+//					USART_RX_STA++;
+//				}
+//			}
+		
+				USART1_Date[i]=temp;
+				
+			if(USART1_Date[3]==0x0D)
+			{
+				USART1_RX_BUF=1;
+			}
+			i++;
+			if(i==4)
+			{
+					i=0;
+			}
+			
+			get_qr_code();
+		 }
+   
+return 0;	
+}
+
+void get_qr_code()
+{
+	if(USART1_RX_BUF==1)
+	{
+		USART1_RX_BUF=0;
+		qr_codes=(USART1_Date[0]&0x0f)*100+(USART1_Date[1]&0x0f)*10+(USART1_Date[2]&0x0f);
+		OLED_ShowNumber(45,25,(int)qr_codes,3,12);
+	}
 }
