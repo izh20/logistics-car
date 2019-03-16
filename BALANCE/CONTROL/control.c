@@ -48,6 +48,7 @@ void TIM1_UP_IRQHandler(void)
 		{
 			Yaw_target=Yaw;
 			begin_flag=1;
+			//servos_init();//舵机初始化
 		}
 		
 		if(begin_flag==1)//3秒钟后进入
@@ -57,7 +58,6 @@ void TIM1_UP_IRQHandler(void)
 			chassis_angle_control();//用于前进，后退，左平移，右平移的程序，有角度闭环
 			infr_control();//巡线控制程序，用于x，y轴循迹
 			car_locate();//小车黑线检测程序，用于室内定位
-			//car_status.task_mode=FORWARD;
 			//car_locate_control(X_target,Y_target);	
 			//car_locate_control(3,1);
 			//task_planning();
@@ -105,7 +105,8 @@ void go_to_scan_QR()
 		if(x_axis==6&&qr_location_arrive_flag==0)//到达二维码区域
 		{
 			
-			car_status.task_mode=BACK;	
+			car_status.task_mode=BACK;
+			
 			
 		}
 	
@@ -148,31 +149,240 @@ void go_to_scan_QR()
 		}
 		
 }
-char grab_flag=0;
+
+void go_to_scan_QR_1()
+{
+	
+	if(forward_flag==0)
+	{
+		
+		car_status.task_mode=LEFT_TRANSLATION;
+	}
+	if(qr_line>2&&forward_flag==0)
+	{
+		//start_openmv();//启动openmv
+		forward_flag=1;
+		car_status.task_mode=RIGHT_TRANSLATION;
+		delay_ms(100);
+		car_status.task_mode=STOP;
+		delay_ms(100);
+	}
+	if(forward_flag==1)
+	{
+			car_status.task_mode=FORWARD;
+		forward_flag=2;
+	}
+//	if(x_axis>5&&qr_location_arrive_flag==0)
+//	{
+//		CAR_SPEED=1200;//降速
+//	}
+		if(x_axis==2)//即将到达物料区域
+			start_openmv();//启动openmv
+		if(x_axis==6&&qr_location_arrive_flag==0)//到达二维码区域
+		{
+			
+			//car_status.task_mode=BACK;
+			car_status.task_mode=STOP;//停下来扫二维码
+			
+		}
+		if(scan_qr_success_flag==1)//二维码扫描成功
+//		if(qr_right_translation_flag==1)
+			{
+				qr_location_arrive_flag=1;	
+//				qr_right_translation_flag=2;
+			}
+		if(qr_location_arrive_flag==1)//扫描二维码成功后后退
+		{
+//			if(qr_back_flag==0)//避免里面的程序一直运行
+//			{
+//				CAR_SPEED=700;
+//				Yaw_target=180;
+//				car_status.task_mode=RIGHT_TRANSLATION;//右平移
+//			}
+//			if(qr_back_flag==1)
+//			{
+//				//CAR_SPEED=800;
+//				car_status.task_mode=LEFT_TRANSLATION;//左平移
+//				delay_ms(100);
+//				qr_back_flag=2;
+//			}
+//			if(qr_back_flag==2)
+//			{
+				
+				Yaw_target=180;
+				car_status.task_mode=BACK;
+				if(x_axis==5)
+					CAR_SPEED=900;//离开二维码区域后加速
+				qr_task_finish=1;
+				qr_location_arrive_flag=3;
+			//}
+		}
+		
+}
+char home_arrive_flag=0;//到家标志位
+char circle_count=1;//循环次数  三个物块共三个循环
+char grab_flag=0;//抓取标志位
+char place_flag=0;//放置标志位
 char material_arrive_flag=0;
 void grab_task()//抓取任务
 {
+if(circle_count==1)//第一次循环
+{
 	if(qr_task_finish==1)
 	{
-		if(x_axis<=4&&grab_flag==0)
-		{
-			CAR_SPEED=800;//即将接近目标，降速
+//		if(x_axis<=4&&grab_flag==0)
+//		{
+			//CAR_SPEED=800;//即将接近目标，降速
 			if(material_arrive_flag==1)
 			{
-				car_status.task_mode=FORWARD;
+				material_arrive_flag=2;
+				car_status.task_mode=FORWARD;//停车
 				delay_ms(100);
-				grab_flag=1;
-			}
-		}
-		if(grab_flag==1)//在这里进行抓取任务 待写
-		{
-//			Yaw_target=180;//右移不循线  用陀螺仪走直线
-//			car_status.task_mode=RIGHT_TRANSLATION;
 				car_status.task_mode=STOP;	
-				grab_unpack();
+				delay_ms(100);
+				servos_ready_grab();
+				delay_ms(1000);
+				//grab_flag=1;
+			}
+//		}
+		if(material_arrive_flag==2)//即将到达物料区域
+		{		
+				
+				Yaw_target=180;//右移不循线  用陀螺仪走直线
+				car_status.task_mode=RIGHT_TRANSLATION;
+				CAR_SPEED=700;//降速
+				servos_ready_grab();//当车往右移动时，抓取动作开始准备
+				//grab_unpack(qr_first);
+		}
+		if(grab_flag==1)//抓取标志位
+		{
+			car_status.task_mode=STOP;
+			delay_ms(600);
+			grab_unpack(qr_first);//根据二维码和物块坐标，来抓取第一个色块
+			grab_firmly();//抬升
+			delay_ms(600);
+			grab_flag=0;
+			material_arrive_flag=3;
+		}
+		if(material_arrive_flag==3)//物块抓取完毕
+		{
+			CAR_SPEED=700;//降速
+			car_status.task_mode=LEFT_TRANSLATION;	
+		}
+		if(place_flag==1)//物块放置标志位
+		{
+			car_status.task_mode=STOP;
+			delay_ms(600);
+			put_material(qr_first);
+			delay_ms(1000);
+			place_flag=0;
+			circle_count++;//循环次数	
+			material_arrive_flag=0;//用于后面标志位
 		}
 	}
 }
+		if(circle_count==2)//第二次抓取循环
+		{
+			if(material_arrive_flag==0)//物块放置完毕
+			{
+				Yaw_target=180;//右移不循线  用陀螺仪走直线
+				car_status.task_mode=RIGHT_TRANSLATION;	
+				CAR_SPEED=700;//降速
+				servos_ready_grab();//当车往右移动时，抓取动作开始准备
+			}
+			if(grab_flag==1)//抓取标志位
+			{
+				car_status.task_mode=STOP;
+				delay_ms(600);
+				grab_unpack(qr_second);//根据二维码和物块坐标，来抓取第2个色块
+				grab_firmly();//抬升
+				delay_ms(600);
+				grab_flag=0;
+				material_arrive_flag=1;
+			}
+			if(material_arrive_flag==1)//物块抓取完毕
+			{
+				CAR_SPEED=700;//降速
+			car_status.task_mode=LEFT_TRANSLATION;	
+			}
+			if(place_flag==1)//物块放置标志位
+			{
+				car_status.task_mode=STOP;
+				delay_ms(600);
+				put_material(qr_second);
+				delay_ms(1000);
+				place_flag=0;
+				circle_count++;//循环次数	
+				material_arrive_flag=0;//用于后面标志位
+			}
+		}
+		if(circle_count==3)//第3次抓取循环
+		{
+			if(material_arrive_flag==0)//物块放置完毕
+			{
+				Yaw_target=180;//右移不循线  用陀螺仪走直线
+				car_status.task_mode=RIGHT_TRANSLATION;	
+				CAR_SPEED=700;//降速
+				servos_ready_grab();//当车往右移动时，抓取动作开始准备
+			}
+			if(grab_flag==1)//抓取标志位
+			{
+				car_status.task_mode=STOP;
+				delay_ms(600);
+				grab_unpack(qr_third);//根据二维码和物块坐标，来抓取第3个色块
+				grab_firmly();//抬升
+				delay_ms(600);
+				grab_flag=0;
+				material_arrive_flag=1;
+			}
+			if(material_arrive_flag==1)//物块抓取完毕
+			{
+				CAR_SPEED=700;//降速
+			car_status.task_mode=LEFT_TRANSLATION;	
+			}
+			if(place_flag==1)//物块放置标志位
+			{
+				car_status.task_mode=STOP;
+				delay_ms(600);
+				put_material(qr_third);
+				delay_ms(1000);
+				place_flag=0;
+				circle_count++;//循环次数	
+				material_arrive_flag=0;//用于后面标志位
+			}
+		}
+		if(circle_count==4)//第4次循环,回家
+		{
+			if(material_arrive_flag==0)//物块放置完毕
+			{
+				Yaw_target=180;//右移不循线  用陀螺仪走直线
+				car_status.task_mode=RIGHT_TRANSLATION;	
+				CAR_SPEED=700;//降速
+			}
+			if(grab_flag==1)//到达物料区域
+			{
+				car_status.task_mode=STOP;
+				delay_ms(600);
+				Yaw_target=180;//后退不循线  用陀螺仪走直线
+				car_status.task_mode=BACK;
+				grab_flag=0;
+			}
+			if(home_arrive_flag==1)//即将到达HOME
+			{
+				car_status.task_mode=STOP;
+				delay_ms(600);
+				Yaw_target=180;
+				car_status.task_mode=RIGHT_TRANSLATION;//右平移
+				delay_ms(1500);
+				home_arrive_flag=2;
+			}
+			if(home_arrive_flag==2)//到达HOME
+			{
+				car_status.task_mode=STOP;
+			}
+		}
+		
+	}
 
 
 

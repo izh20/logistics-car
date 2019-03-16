@@ -27,15 +27,37 @@ Project File Date:  02/11/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling Minibalance.c...
-Minibalance.c(133): warning:  #223-D: function "grab_task" declared implicitly
-  			grab_task();
-Minibalance.c: 1 warning, 0 errors
+compiling control.c...
+..\BALANCE\CONTROL\control.c(43): warning:  #223-D: function "get_tick" declared implicitly
+  		get_tick();//
+..\BALANCE\CONTROL\control.c(68): warning:  #223-D: function "vision_status_detection" declared implicitly
+  			vision_status_detection();
+..\BALANCE\CONTROL\control.c(180): warning:  #223-D: function "start_openmv" declared implicitly
+  			start_openmv();//启动openmv
+..\BALANCE\CONTROL\control.c(261): warning:  #223-D: function "grab_unpack" declared implicitly
+  			grab_unpack(qr_first);//根据二维码和物块坐标，来抓取第一个色块
+..\BALANCE\CONTROL\control.c(262): warning:  #223-D: function "grab_firmly" declared implicitly
+  			grab_firmly();//抬升
+..\BALANCE\CONTROL\control.c(276): warning:  #223-D: function "put_material" declared implicitly
+  			put_material(qr_first);
+..\BALANCE\CONTROL\control.c(297): warning:  #223-D: function "grab_unpack" declared implicitly
+  				grab_unpack(qr_second);//根据二维码和物块坐标，来抓取第2个色块
+..\BALANCE\CONTROL\control.c(298): warning:  #223-D: function "grab_firmly" declared implicitly
+  				grab_firmly();//抬升
+..\BALANCE\CONTROL\control.c(312): warning:  #223-D: function "put_material" declared implicitly
+  				put_material(qr_second);
+..\BALANCE\CONTROL\control.c(332): warning:  #223-D: function "grab_unpack" declared implicitly
+  				grab_unpack(qr_third);//根据二维码和物块坐标，来抓取第3个色块
+..\BALANCE\CONTROL\control.c(333): warning:  #223-D: function "grab_firmly" declared implicitly
+  				grab_firmly();//抬升
+..\BALANCE\CONTROL\control.c(347): warning:  #223-D: function "put_material" declared implicitly
+  				put_material(qr_third);
+..\BALANCE\CONTROL\control.c: 12 warnings, 0 errors
 linking...
-Program Size: Code=32198 RO-data=6314 RW-data=368 ZI-data=2840  
+Program Size: Code=33982 RO-data=6314 RW-data=416 ZI-data=2840  
 FromELF: creating hex file...
-"..\OBJ\main.axf" - 0 Error(s), 1 Warning(s).
-Build Time Elapsed:  00:00:04
+"..\OBJ\main.axf" - 0 Error(s), 12 Warning(s).
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

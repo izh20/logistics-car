@@ -1,7 +1,7 @@
 #ifndef __VISION_H
 #define __VISION_H
 #include "sys.h"
-
+#define OPENMV_START PBout(2) // PB2
 typedef struct
 {
     uint8_t  block_recognition_status;//色块识别状态
@@ -21,6 +21,7 @@ extern uint16_t block_unpack;//色块顺序  红1绿2蓝3
 extern uint8_t qr_code;//二维码的数据
 extern uint8_t qr_code_flag;//识别标志位 1为未识别，0为识别成功
 extern uint16_t target_x_err;//色块x轴误差
+void openmv_start_init();
 //extern uint8_t USART2_Date[4];//串口2接收到的数据
 void get_vision_data(void);
 int Data_Transform(uint8_t code);
@@ -29,6 +30,7 @@ void vision_status_detection(void);
 
 void vision_control(void);
 int vision_pid_control(void);
-void grab_unpack(void);
+void grab_unpack(int qr);
+void start_openmv();
 #endif
 

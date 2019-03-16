@@ -24,7 +24,7 @@
 4.USART2 openmv通讯
 	TX			PA2			
 	RX			PA3
-					PA12(openmv启动引脚，低电平启动openmv)
+					PB2(openmv启动引脚，低电平启动openmv)
 5.USART3
 	TX			PB10
 	RX			PB11
@@ -72,7 +72,7 @@ int main(void)
 	JTAG_Set(JTAG_SWD_DISABLE);     //=====关闭JTAG接口
 	JTAG_Set(SWD_ENABLE);           //=====打开SWD接口 可以利用主板的SWD接口调试
 	uart_init(72,9600);           //初始化串口1
-	
+	openmv_start_init();
 	TIM3_PWM_init(1999,71);					//底盘PWM调速初始化
 	IIC_Init();                     //模拟IIC初始化
 	
@@ -94,7 +94,6 @@ int main(void)
 //EXTI_Init();											//红外传感器外部中断，用于定位
  uart2_init(36,57600);					//初始化串口2
  Timer1_Init(4999,71);           //=====2MS进一次中断服务函数
-	
 	while(1)
 		{
 			OLED_ShowNumber(0,10,(int)Yaw,3,12);
@@ -122,17 +121,21 @@ int main(void)
 			/***************舵机 0度对应占空比55/4096 180度对应占空比250/4096 ********************/
 			/**** joint1 0度对应于舵机138度； joint1 -135度对应于舵机30度          **/
 			/**** joint2 0度对应于舵机90度； joint2 90度对应于舵机18度          **/
-			pca_setpwm1(0,0,degree2duty_270(90));    
-			pca_setpwm1(1,0,degree2duty_180(90));
-	  	pca_setpwm1(2,0,degree2duty_180(90));  //140 - 0  300 - 90
-//			
-			//pca_setpwm1(3,0,degree2duty(80));
+			pca_setpwm1(0,0,degree2duty_270(100));    
+//			pca_setpwm1(1,0,degree2duty_180(120));
+//	  	pca_setpwm1(2,0,degree2duty_180(50));  //140 - 0  300 - 90			
+//			pca_setpwm1(3,0,degree2duty_180(80));
 			//shanwai_send();
 				//printf("卡 尔 曼 滤 波 输 出 Pitch:  %f\r\n  ",Angle_Balance);  //y 
-			go_to_scan_QR();
-			grab_task();
-			
-			//car_status.task_mode=BACK;
-			
+			//go_to_scan_QR();
+			if(wheel_flag==1)//按键启动
+			{
+				go_to_scan_QR_1();
+				grab_task();
+			}
+			//grab_slowly(0,2,4,175,60);
+				//servos_init();
+					//grab_mid_material();
+					//grab_left_material();
 		} 
 }

@@ -60,7 +60,7 @@ uint8_t qr_code_flag=1;//识别标志位 1为未识别，0为识别成功
 uint16_t target_x_err;//色块x轴误差
 //uint16_t sum=0;//校验和
 uint8_t block_code;
-int qr_first,qr_second,qr_third;//第一次抓取物块的颜色
+//int qr_first,qr_second,qr_third;//第一次抓取物块的颜色
 void get_vision_data()
 {
 	if(USART2_RX_BUF==1)
@@ -71,9 +71,9 @@ void get_vision_data()
 		block_code=USART2_Date[3];
 		block_unpack=Data_Transform(block_code);
 		qr_unpack=Data_Transform(qr_code);
-		qr_first=qr_unpack/100;//第一次抓取物块的颜色
-		qr_second=qr_unpack/10%10;//第二次抓取物块的颜色
-		qr_third=qr_unpack%10;//第三次抓取物块的颜色
+//		qr_first=qr_unpack/100;//第一次抓取物块的颜色
+//		qr_second=qr_unpack/10%10;//第二次抓取物块的颜色
+//		qr_third=qr_unpack%10;//第三次抓取物块的颜色
 		
 	}
 	
@@ -85,19 +85,23 @@ void get_vision_data()
 *返 回 值: 
 **********************************************************************************************************/
 
-void grab_unpack(void)
+void grab_unpack(int qr)
 {
-	if(qr_first==block_unpack/100)//抓左边
+	if(qr==block_unpack/100)//抓左边
 	{
 		OLED_ShowString(0,45,"l");
+		grab_left_material();
 	}
-	if(qr_first==block_unpack/10%10)//抓中间
+	if(qr==block_unpack/10%10)//抓中间
 	{
 		OLED_ShowString(0,45,"m");
+
+		grab_mid_material();
 	}
-	if(qr_first==block_unpack%10)//抓右边
+	if(qr==block_unpack%10)//抓右边
 	{
 		OLED_ShowString(0,45,"r");
+		grab_right_material();
 	}
 }
 /**********************************************************************************************************
@@ -106,17 +110,17 @@ void grab_unpack(void)
 *形    参:
 *返 回 值: 
 **********************************************************************************************************/
-void put_material()
+void put_material(int qr)
 {
-	if(qr_first==1)//放右边
+	if(qr==1)//放右边
 	{
 		
 	}
-	if(qr_first==2)//放中间
+	if(qr==2)//放中间
 	{
 		
 	}
-	if(qr_first==3)//放左边
+	if(qr==3)//放左边
 	{
 		
 	}
@@ -204,4 +208,15 @@ int vision_pid_control()
 	return vision_output;
 }
 
+void openmv_start_init()
+{
+	RCC->APB2ENR|=1<<3; //使能 PORTB 时钟  
+GPIOB->CRL&=0XFFFFF0FF;
+GPIOB->CRL|=0X00000300;//PA4 推挽输出
+GPIOB->ODR|=0<<2; //PA4 输出低
+}
 
+void start_openmv()
+{
+	OPENMV_START=1;
+}

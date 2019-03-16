@@ -86,10 +86,10 @@ void  EXTI15_10_IRQHandler()
 				//car_status.task_mode=RIGHT_TRANSLATION;
 			}
 			delay_ms(18);//消抖
-			if(x_axis==3&&X_INFR_LEFT==0&&car_status.task_mode==BACK)//识别二维码后，判断车是否走到物料前方
+			if(x_axis==4&&X_INFR_LEFT==0&&car_status.task_mode==BACK)//识别二维码后，判断车是否走到物料前方
 				material_arrive_flag=1;
-			if(x_axis==6&&X_INFR_LEFT==1&&car_status.task_mode==BACK)//到达二位码所对应坐标，此标志位为向右移动
-				qr_right_translation_flag=1;
+//			if(x_axis==5&&X_INFR_LEFT==1&&car_status.task_mode==BACK)//到达二位码所对应坐标，此标志位为向右移动
+//				qr_right_translation_flag=1;
 			EXTI->PR=1<<13;
 		}
 		
@@ -108,6 +108,8 @@ void  EXTI15_10_IRQHandler()
 			}
 			if(x_axis==6&&y_axis==0&&Y_INFR_RIGHT==1)//接近qr坐标时后退
 				qr_back_flag=1;
+			if(x_axis==4&&y_axis==0&&Y_INFR_RIGHT==1&&(car_status.task_mode==RIGHT_TRANSLATION))//抓取标志位1为第一次2为第二次3为第三次
+				grab_flag=1;
 			EXTI->PR=1<<14;
 		}
 		
@@ -117,6 +119,10 @@ void  EXTI15_10_IRQHandler()
 			{
 				y_location_arrive_flag=1;
 				//car_status.task_mode=STOP;
+			}
+			if(x_axis==4&&y_axis==2&&Y_INFR_LEFT==1&&(car_status.task_mode==LEFT_TRANSLATION))//当小车即将到达物料放置区时，触发中断
+			{
+				place_flag=1;
 			}
 			EXTI->PR=1<<15; 
 		}
