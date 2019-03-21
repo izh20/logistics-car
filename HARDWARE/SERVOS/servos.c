@@ -42,61 +42,128 @@ int degree2duty_180(int degree)
 //*/
 //#define a 1.083333f
 //#define b 55
+void servos_put_material()
+{
+	pca_setpwm1(0,0,degree2duty_270(95));
+	time_delay(60);
+	pca_setpwm1(4,0,degree2duty_270(5));//2号机械臂
+	grab_slowly(8,2,7,260,130);//放3号机械臂
+	pca_setpwm1(12,0,degree2duty_180(100));//张开爪子
+	grab_slowly(8,2,7,130,260);//抬升3号机械臂
+	servos_init(0);
+}
+
+
+
 void grab_right_material()
 {
-			pca_setpwm1(0,0,degree2duty_270(160));
-			delay_ms(100);
-			pca_setpwm1(1,0,degree2duty_180(80));
-			delay_ms(100);
-	  	pca_setpwm1(2,0,degree2duty_180(15));  //140 - 0  300 - 90		
-			delay_ms(100);
-			pca_setpwm1(3,0,degree2duty_180(80));
+			pca_setpwm1(0,0,degree2duty_270(65));
+			time_delay(60);
+			pca_setpwm1(8,0,degree2duty_270(230));  //140 - 0  300 - 90			
+			time_delay(60);
+			grab_slowly(4,2,2,25,65);
+			//pca_setpwm1(4,0,degree2duty_270(70));
+			//time_delay(60);
+			pca_setpwm1(12,0,degree2duty_180(110));
+			time_delay(60);
 }
 void grab_left_material()
 {
-			pca_setpwm1(0,0,degree2duty_270(190));   
-			delay_ms(100);
-			pca_setpwm1(1,0,degree2duty_180(80));
-			delay_ms(100);
-	  	pca_setpwm1(2,0,degree2duty_180(15));  //140 - 0  300 - 90
-			delay_ms(100);
-			pca_setpwm1(3,0,degree2duty_180(80));
+		pca_setpwm1(0,0,degree2duty_270(120));
+		time_delay(60);
+		pca_setpwm1(8,0,degree2duty_270(225));  //140 - 0  300 - 90		
+		time_delay(60);
+		grab_slowly(4,2,2,25,65);
+		//pca_setpwm1(4,0,degree2duty_270(65));
+		time_delay(60);
+		
+		pca_setpwm1(12,0,degree2duty_180(110));
+		time_delay(60);
 }
 
 void grab_mid_material()
 {
-			pca_setpwm1(0,0,degree2duty_270(175));  
-			delay_ms(100);  
-			pca_setpwm1(1,0,degree2duty_180(80));
-			delay_ms(100);
-	  	pca_setpwm1(2,0,degree2duty_180(15));  //140 - 0  300 - 90			
-			delay_ms(100);
-			pca_setpwm1(3,0,degree2duty_180(80));
+		pca_setpwm1(0,0,degree2duty_270(100));
+		time_delay(60);
+		pca_setpwm1(8,0,degree2duty_270(225));  //140 - 0  300 - 90
+		time_delay(60);
+		grab_slowly(4,2,2,25,75);
+		//pca_setpwm1(4,0,degree2duty_270(65));
+		//time_delay(60);
+		pca_setpwm1(12,0,degree2duty_180(110));
+		time_delay(60);
 }
-void servos_init()//舵机初始化位置
+void servos_init(char mode)//舵机初始化位置
 {
-	//grab_slowly(0,2,5,175,60);
-	
-		pca_setpwm1(0,0,degree2duty_270(175));    
-		pca_setpwm1(1,0,degree2duty_180(150));
-		pca_setpwm1(2,0,degree2duty_180(160));  //140 - 0  300 - 90			
-		pca_setpwm1(3,0,degree2duty_180(80));
+		
+		if(mode==0)//开机状态初始化
+		{
+			pca_setpwm1(0,0,degree2duty_270(60));    
+			pca_setpwm1(4,0,degree2duty_270(15));
+	  	pca_setpwm1(8,0,degree2duty_270(260));  //140 - 0  300 - 90			
+			pca_setpwm1(12,0,degree2duty_180(135));
+		}
+		if(mode==1)//中间物块抓取初始化
+		{
+			grab_slowly(0,2,1,100,60);
+			grab_slowly(4,2,1,65,15);
+			grab_slowly(8,2,1,225,260);
+			pca_setpwm1(12,0,degree2duty_180(145));
+		}
+		if(mode==2)//左边物块抓取初始化
+		{
+			grab_slowly(0,2,1,120,60);
+			grab_slowly(4,2,1,65,15);
+			grab_slowly(8,2,1,225,260);
+			pca_setpwm1(12,0,degree2duty_180(145));
+		}
+		if(mode==3)//右边物块抓取初始化
+		{
+			grab_slowly(0,2,1,65,60);
+			grab_slowly(4,2,1,75,15);
+			grab_slowly(8,2,1,230,260);
+			pca_setpwm1(12,0,degree2duty_180(145));
+		}
+		if(mode==4)//回家舵机初始化
+		{
+			
+		}
 }
 
 void servos_ready_grab()//舵机初始化位置
-{	
-		grab_slowly(0,2,20,90,175);
-		pca_setpwm1(0,0,degree2duty_270(175));
-		pca_setpwm1(1,0,degree2duty_180(80));
-		pca_setpwm1(2,0,degree2duty_180(0));  //140 - 0  300 - 90			
-		pca_setpwm1(3,0,degree2duty_180(80));
+{		
+		
+//		grab_slowly(4,2,1,30,65);
+//		grab_slowly(8,2,1,260,215);
+//		grab_slowly(12,2,1,100,100);
+		pca_setpwm1(0,0,degree2duty_270(105));
+		time_delay(100);
+		pca_setpwm1(4,0,degree2duty_270(25));
+		time_delay(100);
+		pca_setpwm1(8,0,degree2duty_270(260));  //140 - 0  300 - 90
+		time_delay(100);
+		pca_setpwm1(12,0,degree2duty_180(100));
+	//grab_slowly(0,2,1,65,100);
+		time_delay(100);
 }
 
 void grab_firmly()//抓紧抬升
 {
-	pca_setpwm1(3,0,degree2duty_180(104));//抓紧
-	delay_ms(100);
-	pca_setpwm1(2,0,degree2duty_180(0));//抬升
+	pca_setpwm1(12,0,degree2duty_180(145));//抓紧
+	//delay_ms(100);
+	time_delay(60);
+	pca_setpwm1(8,0,degree2duty_270(200));//抬升
+	time_delay(60);
+}
+/**************************************************************************
+函数功能：抓取物块任务
+入口参数：
+返回  值：
+**************************************************************************/
+void grab(int qr)
+{
+	servos_ready_grab();
+	grab_unpack(qr);//根据二维码和物块坐标，来抓取色块
 }
 
 /**************************************************************************
@@ -108,34 +175,37 @@ void grab_firmly()//抓紧抬升
 					target_angle  舵机目标角度
 返回  值：
 **************************************************************************/
-int err,i_count,current_time,last_time,servos_finish_flag=0;
+extern long tick;//系统时间
+
 void grab_slowly(char count,char mode ,int time,int current_angle,int target_angle)//缓慢抓取
 {
+	int err,i_count=0,servos_finish_flag=0;
+	long current_time,last_time;
 	//int err,i,current_time,servos_finish_flag=0;
 	err=(target_angle-current_angle);
 	current_time=get_tick();
-	if(((get_tick()-last_time)>time)&&(mode==1)&&(err!=i_count))
+	while((err!=i_count))
 	{
-		//OLED_ShowString(00,40,"SERVOS");
-		pca_setpwm1(count,0,degree2duty_180(current_angle+i_count));
-		if(err>0)
-			i_count++;
-		else
-			i_count--;
-		last_time=current_time;
+		if(((tick-current_time)>time)&&(mode==1))
+		{
+			pca_setpwm1(count,0,degree2duty_180(current_angle+i_count));
+			if(err>0)
+				i_count++;
+			else
+				i_count--;
+			current_time=tick;
+		}
+		if(((tick-current_time)>time)&&(mode==2))
+		{
+			OLED_ShowNumber(00,40,(int)i_count,3,12);
+			pca_setpwm1(count,0,degree2duty_270(current_angle+i_count));
+			//pca_setpwm1(0,0,degree2duty_270(90));  
+			if(err>0)
+				i_count++;
+			else
+				i_count--;
+			current_time=tick;
+		}
 	}
-	else if(((get_tick()-last_time)>time)&&(mode==2)&&(err!=i_count))
-	{
-		OLED_ShowString(00,40,"SERVOS");
-		pca_setpwm1(count,0,degree2duty_270(current_angle+i_count));
-		//pca_setpwm1(0,0,degree2duty_270(90));  
-		if(err>0)
-			i_count++;
-		else
-			i_count--;
-		last_time=current_time;
-	}
-	
-	
-	
 }
+

@@ -1,13 +1,10 @@
 #ifndef __CONTROL_H
 #define __CONTROL_H
 #include "sys.h"
-  /**************************************************************************
-作者：平衡小车之家
-我的淘宝小店：http://shop114407458.taobao.com/
-**************************************************************************/
 #define PI 3.14159265
 
-
+#define TARGET_ANGLE 180;
+#define INIT_ANGLE   180
 typedef struct
 {
   uint8_t target_x;//目标位置的x轴坐标
@@ -33,6 +30,7 @@ extern u8 location_arrive_finish_flag;//最终位置到达标志位
 extern char place_flag;//放置标志位
 extern char home_arrive_flag;//到家标志位
 extern char grab_flag;//抓取标志位
+extern char circle_count;//循环次数  三个物块共三个循环
 void TIM1_UP_IRQHandler(void);  
 void Get_Angle(u8 way);
 void param_init(void);
@@ -43,5 +41,6 @@ void car_locate_control(u8 x_target,u8 y_target);
 void task_planning(void);
 void go_to_scan_QR(void);
 void go_to_scan_QR_1(void);//第二版程序
-
+void grab_task();//抓取任务
+void time_delay(int nms);//延时函数
 #endif

@@ -85,8 +85,8 @@ void  EXTI15_10_IRQHandler()
 				x_location_arrive_flag=1;
 				//car_status.task_mode=RIGHT_TRANSLATION;
 			}
-			delay_ms(18);//消抖
-			if(x_axis==4&&X_INFR_LEFT==0&&car_status.task_mode==BACK)//识别二维码后，判断车是否走到物料前方
+			//delay_ms(18);//消抖
+			if(x_axis==4&&car_status.task_mode==BACK)//识别二维码后，判断车是否走到物料前方
 				material_arrive_flag=1;
 //			if(x_axis==5&&X_INFR_LEFT==1&&car_status.task_mode==BACK)//到达二位码所对应坐标，此标志位为向右移动
 //				qr_right_translation_flag=1;
@@ -95,35 +95,56 @@ void  EXTI15_10_IRQHandler()
 		
 		if((EXTI->PR & EXTI_Line14) != (uint32_t)RESET)//外部中断线14
 		{
-			if((y_axis==Y_target)&&(x_axis==X_target)&&(car_status.task_mode==LEFT_TRANSLATION))//当小车即将到达y轴目标位置时，需要使能小车前后平移的红外传感器的外部中断，进行小车y轴位置的精确控制
+//			if((y_axis==Y_target)&&(x_axis==X_target)&&(car_status.task_mode==LEFT_TRANSLATION))//当小车即将到达y轴目标位置时，需要使能小车前后平移的红外传感器的外部中断，进行小车y轴位置的精确控制
+//			{
+//				y_location_arrive_flag=1;
+//				//car_status.task_mode=STOP;
+//			}
+			if(x_axis==4&&y_axis==0&&(car_status.task_mode==RIGHT_TRANSLATION))//抓取标志位1为第一次2为第二次3为第三次
 			{
-				y_location_arrive_flag=1;
+				grab_flag=1;
 				//car_status.task_mode=STOP;
 			}
 			
 			delay_ms(18);//消抖
+			
 			if(Y_INFR_RIGHT==1)
 			{
-			qr_line++;
+				qr_line++;
 			}
 			if(x_axis==6&&y_axis==0&&Y_INFR_RIGHT==1)//接近qr坐标时后退
 				qr_back_flag=1;
-			if(x_axis==4&&y_axis==0&&Y_INFR_RIGHT==1&&(car_status.task_mode==RIGHT_TRANSLATION))//抓取标志位1为第一次2为第二次3为第三次
-				grab_flag=1;
+			if(x_axis==0&&y_axis==0&&(car_status.task_mode==BACK)&&(circle_count==4))//回家标志位
+			{
+				home_arrive_flag=1;
+				//car_status.task_mode=STOP;
+			}
 			EXTI->PR=1<<14;
 		}
 		
 		if((EXTI->PR & EXTI_Line15) != (uint32_t)RESET)//外部中断线15
 		{
-			if((y_axis==Y_target)&&(x_axis==X_target)&&(car_status.task_mode==RIGHT_TRANSLATION))//当小车即将到达y轴目标位置时，需要使能小车前后平移的红外传感器的外部中断，进行小车y轴位置的精确控制
-			{
-				y_location_arrive_flag=1;
-				//car_status.task_mode=STOP;
-			}
-			if(x_axis==4&&y_axis==2&&Y_INFR_LEFT==1&&(car_status.task_mode==LEFT_TRANSLATION))//当小车即将到达物料放置区时，触发中断
+//			if((y_axis==Y_target)&&(x_axis==X_target)&&(car_status.task_mode==RIGHT_TRANSLATION))//当小车即将到达y轴目标位置时，需要使能小车前后平移的红外传感器的外部中断，进行小车y轴位置的精确控制
+//			{
+//				y_location_arrive_flag=1;
+//				//car_status.task_mode=STOP;
+//			}
+			if(x_axis==4&&y_axis==2&&(car_status.task_mode==LEFT_TRANSLATION))//当小车即将到达物料放置区时，触发中断
 			{
 				place_flag=1;
 			}
+			
+			if(x_axis==4&&y_axis==0&&(car_status.task_mode==RIGHT_TRANSLATION))//抓取标志位1为第一次2为第二次3为第三次
+			{
+				grab_flag=1;
+				car_status.task_mode=STOP;
+			}
+			if(x_axis==0&&y_axis==0&&(car_status.task_mode==BACK)&&(circle_count==4))//回家标志位
+			{
+				home_arrive_flag=1;
+				//car_status.task_mode=STOP;
+			}
+			
 			EXTI->PR=1<<15; 
 		}
 }
@@ -138,6 +159,11 @@ void EXTI1_IRQHandler(void)
 		OLED_ShowNumber(90,0,black_line,2,12); 
 		black_flag=1;
 	}
+//	if(x_axis==0&&y_axis==0&&(car_status.task_mode==BACK)&&(circle_count==4))//回家标志位
+//	{
+//		home_arrive_flag=1;
+//		car_status.task_mode=STOP;
+//	}
 		EXTI->PR=1<<1;   
 }
 

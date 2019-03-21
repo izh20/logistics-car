@@ -39,20 +39,20 @@ void TIM1_UP_IRQHandler(void)
 		cnt++;
 		  TIM1->SR&=~(1<<0);                                       //===清除定时器1中断标志位		 
 		
-		if(cnt%5==0)//十毫秒计一次
-		get_tick();//
-		
+		if(cnt%2==0)//十毫秒计一次
+			get_tick();//获取时间
 			//Get_Angle(Way_Angle);                                    //===更新姿态	
 			Read_DMP();
 		if(cnt==200)
 		{
 			Yaw_target=Yaw;
 			begin_flag=1;
-			//servos_init();//舵机初始化
+			servos_init(0);//舵机初始化
+			//servos_ready_grab();
 		}
-		
 		if(begin_flag==1)//3秒钟后进入
 		{
+			//servos_ready_grab();
 			car_mode_select();//小车x巡线，y巡线模式选择
 			PWM_OUTPUT=straight_control(Yaw,Yaw_target);//角度闭环，用于走直线
 			chassis_angle_control();//用于前进，后退，左平移，右平移的程序，有角度闭环
@@ -61,17 +61,25 @@ void TIM1_UP_IRQHandler(void)
 			//car_locate_control(X_target,Y_target);	
 			//car_locate_control(3,1);
 			//task_planning();
-			//vision_control();//视觉控制
+			//vision_control();//视觉控制		
+			//grab_task();		
 			
-			
-			
-			vision_status_detection();
-			
-			
+			vision_status_detection();		
 		}			 
 	}       	
 	  
 } 
+extern long tick;
+void time_delay(int nms)//1对应于10ms
+{
+	long current_time;
+	current_time=get_tick();
+	while(tick-current_time<nms)
+	{
+		;
+	}
+}
+
 extern uint16_t qr_unpack;//二维码解码数据
 char qr_line=0;
 char forward_flag=0;
@@ -152,72 +160,50 @@ void go_to_scan_QR()
 
 void go_to_scan_QR_1()
 {
-	
 	if(forward_flag==0)
 	{
-		
 		car_status.task_mode=LEFT_TRANSLATION;
 	}
 	if(qr_line>2&&forward_flag==0)
 	{
-		//start_openmv();//启动openmv
 		forward_flag=1;
 		car_status.task_mode=RIGHT_TRANSLATION;
-		delay_ms(100);
+		time_delay(20);
 		car_status.task_mode=STOP;
-		delay_ms(100);
+		time_delay(20);
 	}
 	if(forward_flag==1)
 	{
-			car_status.task_mode=FORWARD;
+		car_status.task_mode=FORWARD;
 		forward_flag=2;
 	}
-//	if(x_axis>5&&qr_location_arrive_flag==0)
-//	{
-//		CAR_SPEED=1200;//降速
-//	}
-		if(x_axis==2)//即将到达物料区域
-			start_openmv();//启动openmv
-		if(x_axis==6&&qr_location_arrive_flag==0)//到达二维码区域
-		{
-			
-			//car_status.task_mode=BACK;
-			car_status.task_mode=STOP;//停下来扫二维码
-			
-		}
-		if(scan_qr_success_flag==1)//二维码扫描成功
-//		if(qr_right_translation_flag==1)
-			{
-				qr_location_arrive_flag=1;	
-//				qr_right_translation_flag=2;
-			}
-		if(qr_location_arrive_flag==1)//扫描二维码成功后后退
-		{
-//			if(qr_back_flag==0)//避免里面的程序一直运行
-//			{
-//				CAR_SPEED=700;
-//				Yaw_target=180;
-//				car_status.task_mode=RIGHT_TRANSLATION;//右平移
-//			}
-//			if(qr_back_flag==1)
-//			{
-//				//CAR_SPEED=800;
-//				car_status.task_mode=LEFT_TRANSLATION;//左平移
-//				delay_ms(100);
-//				qr_back_flag=2;
-//			}
-//			if(qr_back_flag==2)
-//			{
-				
-				Yaw_target=180;
-				car_status.task_mode=BACK;
-				if(x_axis==5)
-					CAR_SPEED=900;//离开二维码区域后加速
-				qr_task_finish=1;
-				qr_location_arrive_flag=3;
-			//}
-		}
+	if(x_axis==2)//即将到达物料区域
+	{
+		start_openmv();//启动openmv	
 		
+	}
+	if(x_axis==3)
+	{
+		CAR_SPEED=700;
+                                                                                         
+	}
+	if(x_axis==6&&qr_location_arrive_flag==0)//到达二维码区域
+	{
+		car_status.task_mode=STOP;//停下来扫二维码		
+	}
+	if(scan_qr_success_flag==1)//二维码扫描成功
+	{
+		qr_location_arrive_flag=1;	
+		scan_qr_success_flag=0;
+	}
+	if(qr_location_arrive_flag==1)//扫描二维码成功后后退
+	{	
+			Yaw_target=INIT_ANGLE;
+			car_status.task_mode=BACK;
+			CAR_SPEED=LOW_SPEED;//离开二维码区域后减速
+			qr_task_finish=1;
+			qr_location_arrive_flag=3;
+	}		
 }
 char home_arrive_flag=0;//到家标志位
 char circle_count=1;//循环次数  三个物块共三个循环
@@ -230,51 +216,48 @@ if(circle_count==1)//第一次循环
 {
 	if(qr_task_finish==1)
 	{
-//		if(x_axis<=4&&grab_flag==0)
-//		{
-			//CAR_SPEED=800;//即将接近目标，降速
-			if(material_arrive_flag==1)
+			if(material_arrive_flag==1)//坐标（4，1）
 			{
-				material_arrive_flag=2;
+				
 				car_status.task_mode=FORWARD;//停车
-				delay_ms(100);
+				time_delay(40);
 				car_status.task_mode=STOP;	
-				delay_ms(100);
-				servos_ready_grab();
-				delay_ms(1000);
+				time_delay(40);
+				material_arrive_flag=2;
+				//servos_ready_grab();
+				//time_delay(100);
 				//grab_flag=1;
 			}
-//		}
 		if(material_arrive_flag==2)//即将到达物料区域
 		{		
-				
-				Yaw_target=180;//右移不循线  用陀螺仪走直线
+				material_arrive_flag=0;
+				CAR_SPEED=LOW_SPEED;//降速
+				Yaw_target=INIT_ANGLE;//右移不循线  用陀螺仪走直线
 				car_status.task_mode=RIGHT_TRANSLATION;
-				CAR_SPEED=700;//降速
-				servos_ready_grab();//当车往右移动时，抓取动作开始准备
-				//grab_unpack(qr_first);
 		}
 		if(grab_flag==1)//抓取标志位
-		{
+		{	
 			car_status.task_mode=STOP;
-			delay_ms(600);
-			grab_unpack(qr_first);//根据二维码和物块坐标，来抓取第一个色块
-			grab_firmly();//抬升
-			delay_ms(600);
+			grab(qr_first);//该动作包括抓取准备，抓取，抓取完成动作
 			grab_flag=0;
 			material_arrive_flag=3;
+			
 		}
 		if(material_arrive_flag==3)//物块抓取完毕
 		{
-			CAR_SPEED=700;//降速
-			car_status.task_mode=LEFT_TRANSLATION;	
+			CAR_SPEED=MID_SPEED;//降速
+			time_delay(150);
+			car_status.task_mode=LEFT_TRANSLATION;
+			material_arrive_flag=4;	
 		}
 		if(place_flag==1)//物块放置标志位
 		{
+			car_status.task_mode=RIGHT_TRANSLATION;
+			time_delay(50);
 			car_status.task_mode=STOP;
-			delay_ms(600);
-			put_material(qr_first);
-			delay_ms(1000);
+			time_delay(50);
+			servos_put_material();
+			time_delay(50);
 			place_flag=0;
 			circle_count++;//循环次数	
 			material_arrive_flag=0;//用于后面标志位
@@ -285,32 +268,35 @@ if(circle_count==1)//第一次循环
 		{
 			if(material_arrive_flag==0)//物块放置完毕
 			{
-				Yaw_target=180;//右移不循线  用陀螺仪走直线
+				Yaw_target=TARGET_ANGLE;//右移不循线  用陀螺仪走直线
 				car_status.task_mode=RIGHT_TRANSLATION;	
-				CAR_SPEED=700;//降速
-				servos_ready_grab();//当车往右移动时，抓取动作开始准备
+				CAR_SPEED=LOW_SPEED;//降速
+				
 			}
 			if(grab_flag==1)//抓取标志位
 			{
 				car_status.task_mode=STOP;
-				delay_ms(600);
+				servos_ready_grab();//当车往右移动时，抓取动作开始准备
+				time_delay(50);
 				grab_unpack(qr_second);//根据二维码和物块坐标，来抓取第2个色块
 				grab_firmly();//抬升
-				delay_ms(600);
+				time_delay(50);
+				
 				grab_flag=0;
 				material_arrive_flag=1;
 			}
 			if(material_arrive_flag==1)//物块抓取完毕
 			{
-				CAR_SPEED=700;//降速
-			car_status.task_mode=LEFT_TRANSLATION;	
+				CAR_SPEED=MID_SPEED;//降速
+				car_status.task_mode=LEFT_TRANSLATION;	
+				servos_init(1);//避免重心太高
 			}
 			if(place_flag==1)//物块放置标志位
 			{
 				car_status.task_mode=STOP;
-				delay_ms(600);
+				//delay_ms(600);
 				put_material(qr_second);
-				delay_ms(1000);
+				//delay_ms(1000);
 				place_flag=0;
 				circle_count++;//循环次数	
 				material_arrive_flag=0;//用于后面标志位
@@ -320,32 +306,34 @@ if(circle_count==1)//第一次循环
 		{
 			if(material_arrive_flag==0)//物块放置完毕
 			{
-				Yaw_target=180;//右移不循线  用陀螺仪走直线
+				Yaw_target=TARGET_ANGLE;//右移不循线  用陀螺仪走直线
 				car_status.task_mode=RIGHT_TRANSLATION;	
-				CAR_SPEED=700;//降速
-				servos_ready_grab();//当车往右移动时，抓取动作开始准备
+				CAR_SPEED=LOW_SPEED;//降速
+				
 			}
 			if(grab_flag==1)//抓取标志位
 			{
 				car_status.task_mode=STOP;
-				delay_ms(600);
+				servos_ready_grab();//当车往右移动时，抓取动作开始准备
+				time_delay(60);
 				grab_unpack(qr_third);//根据二维码和物块坐标，来抓取第3个色块
 				grab_firmly();//抬升
-				delay_ms(600);
+				time_delay(60);
 				grab_flag=0;
 				material_arrive_flag=1;
 			}
 			if(material_arrive_flag==1)//物块抓取完毕
 			{
-				CAR_SPEED=700;//降速
-			car_status.task_mode=LEFT_TRANSLATION;	
+				CAR_SPEED=MID_SPEED;//降速
+				car_status.task_mode=LEFT_TRANSLATION;	
+				servos_init(1);//避免重心太高
 			}
 			if(place_flag==1)//物块放置标志位
 			{
 				car_status.task_mode=STOP;
-				delay_ms(600);
+				time_delay(60);
 				put_material(qr_third);
-				delay_ms(1000);
+				time_delay(60);
 				place_flag=0;
 				circle_count++;//循环次数	
 				material_arrive_flag=0;//用于后面标志位
@@ -355,25 +343,33 @@ if(circle_count==1)//第一次循环
 		{
 			if(material_arrive_flag==0)//物块放置完毕
 			{
-				Yaw_target=180;//右移不循线  用陀螺仪走直线
+				Yaw_target=TARGET_ANGLE;//右移不循线  用陀螺仪走直线
 				car_status.task_mode=RIGHT_TRANSLATION;	
-				CAR_SPEED=700;//降速
+				CAR_SPEED=LOW_SPEED;//降速
+				material_arrive_flag=1;
 			}
 			if(grab_flag==1)//到达物料区域
 			{
-				car_status.task_mode=STOP;
-				delay_ms(600);
-				Yaw_target=180;//后退不循线  用陀螺仪走直线
+//				car_status.task_mode=STOP;
+//				delay_ms(600);
+				Yaw_target=186;//后退不循线  用陀螺仪走直线
 				car_status.task_mode=BACK;
+				CAR_SPEED=1100;
 				grab_flag=0;
+			}
+			if(x_axis==1&&car_status.task_mode==BACK)
+			{
+				CAR_SPEED=700;
+				
 			}
 			if(home_arrive_flag==1)//即将到达HOME
 			{
 				car_status.task_mode=STOP;
-				delay_ms(600);
-				Yaw_target=180;
+				time_delay(50);
+				Yaw_target=TARGET_ANGLE;
 				car_status.task_mode=RIGHT_TRANSLATION;//右平移
-				delay_ms(1500);
+				CAR_SPEED=HIGH_SPEED;
+				time_delay(300);
 				home_arrive_flag=2;
 			}
 			if(home_arrive_flag==2)//到达HOME
@@ -504,7 +500,7 @@ void car_locate()
 				 {	
 					 
 					 time_flag=1;
-					 if(locate_delay==100) //延时0.5秒  小车在1秒内必须通过双线或单线   ///这里有问题
+					 if(locate_delay==23) //延时0.15秒  小车在1秒内必须通过双线或单线   ///这里有问题
 					 {
 						 locate_delay=0;
 						 black_flag=0;
@@ -646,7 +642,7 @@ void Get_Angle(u8 way)
 void param_init(void)
 {
 	
-  Straight_KP=45;
+  Straight_KP=50;
   Straight_KI=0;
 	Yaw=0;
 	Yaw_target=0;
@@ -672,10 +668,10 @@ int straight_control(float yaw,float yaw_target)   //如果车向左偏时，Bias小于0
 	 static int Bias,Pwm_output,Last_bias;
 	 Bias=(int)(yaw_target-yaw);                //计算偏差
 	
-	if(Bias>25)
-		Bias=25;
-	if(Bias<-25)
-		Bias=-25;
+	if(Bias>35)
+		Bias=35;
+	if(Bias<-35)
+		Bias=-35;
 	 Pwm_output+=Straight_KP*(Bias-Last_bias)+Straight_KI*Bias;   //增量式PI控制器
 //	if(Bias>0)													//当小车向右转时，屏蔽小车右轮控制
 //		Pwm_output=0;

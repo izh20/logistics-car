@@ -13,6 +13,7 @@ enum
     UNIDENTIFICATION,  //色块未识别
 		RECOGNITION		 //色块识别	
 };
+extern long tick;//系统时间
 extern uint8_t  USART2_RX_BUF;
 extern uint32_t vision_time;//用于检测使视觉识别是否离线
 extern VISION_STATUS vision_status;
@@ -27,7 +28,7 @@ void get_vision_data(void);
 int Data_Transform(uint8_t code);
 long get_tick(void);
 void vision_status_detection(void);
-
+void put_material(int qr);
 void vision_control(void);
 int vision_pid_control(void);
 void grab_unpack(int qr);

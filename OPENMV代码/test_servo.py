@@ -18,7 +18,9 @@ servo_left = PCASG90(pca9685, 1, min_angle=30, max_angle=150)
 #servo_left.set_angle()
 # 右侧舵机
 servo_right = PCASG90(pca9685, 2, min_angle=18, max_angle=120)
-servo_right.set_angle(18)
+#servo_right.set_angle(18)
+servo_right.pulse_width(2000)
+
 
 # 爪子舵机
 servo_crew = PCASG90(pca9685, 3, min_angle=100, max_angle=150)

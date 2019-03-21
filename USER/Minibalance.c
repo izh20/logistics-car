@@ -79,7 +79,6 @@ int main(void)
 	/*************PCA初始化 begin****************/
 	pca_reset1();
 	pca_setfreq1(50);
-	
 	/*************PCA初始化 end****************/
   MPU6050_initialize();           //=====MPU6050初始化	
 	DMP_Init();                     //初始化DMP   
@@ -87,13 +86,11 @@ int main(void)
 	KEY_Init();                     //=====按键初始化
 	infr_Init();										//红外传感器外部中断，用于定位和循迹
 	OLED_Init();                    //=====OLED初始化
-	
 	param_init();										//麦轮PID参数初始化
 	chassis_init();										//初始化电机引脚
-	
 //EXTI_Init();											//红外传感器外部中断，用于定位
  uart2_init(36,57600);					//初始化串口2
- Timer1_Init(4999,71);           //=====2MS进一次中断服务函数
+ Timer1_Init(4999,71);           //=====5MS进一次中断服务函数
 	while(1)
 		{
 			OLED_ShowNumber(0,10,(int)Yaw,3,12);
@@ -102,6 +99,7 @@ int main(void)
 			OLED_ShowNumber(60,10,(int)qr_line,2,12);
 			OLED_ShowNumber(0,25,x_axis,1,12);
 			OLED_ShowNumber(15,25,y_axis,1,12); 
+			OLED_ShowNumber(65,25,block_unpack,3,12);
 			//OLED_ShowNumber(30,25,black_flag,1,12);	
 			
 			//OLED_ShowNumber(60,25,target_x_err,3,12);
@@ -115,24 +113,32 @@ int main(void)
 //			OLED_ShowNumber(80,45,(int)X_target,1,12);
 //			OLED_ShowNumber(95,45,(int)Y_target,1,12);
 			//OLED_ShowString(00,40,"VOLTAGE");
-//			OLED_ShowNumber(45,25,qr_unpack,3,12);
-			OLED_ShowNumber(70,25,block_unpack,3,12);
+			
+			
+//			OLED_ShowNumber(70,25,block_unpack,3,12);
 			OLED_Refresh_Gram();
+			
 			/***************舵机 0度对应占空比55/4096 180度对应占空比250/4096 ********************/
 			/**** joint1 0度对应于舵机138度； joint1 -135度对应于舵机30度          **/
 			/**** joint2 0度对应于舵机90度； joint2 90度对应于舵机18度          **/
-			pca_setpwm1(0,0,degree2duty_270(100));    
-//			pca_setpwm1(1,0,degree2duty_180(120));
-//	  	pca_setpwm1(2,0,degree2duty_180(50));  //140 - 0  300 - 90			
-//			pca_setpwm1(3,0,degree2duty_180(80));
+//			pca_setpwm1(0,0,degree2duty_270(25));    
+//			pca_setpwm1(4,0,degree2duty_270(30));
+//	  	pca_setpwm1(8,0,degree2duty_270(260));  //140 - 0  300 - 90			
+//			pca_setpwm1(12,0,degree2duty_180(80));
 			//shanwai_send();
 				//printf("卡 尔 曼 滤 波 输 出 Pitch:  %f\r\n  ",Angle_Balance);  //y 
 			//go_to_scan_QR();
+//			servos_ready_grab();
 			if(wheel_flag==1)//按键启动
 			{
 				go_to_scan_QR_1();
 				grab_task();
+				
+//				servos_put_material();
+//				grab(qr_first);
+//				wheel_flag=2;
 			}
+			//servos_ready_grab();
 			//grab_slowly(0,2,4,175,60);
 				//servos_init();
 					//grab_mid_material();

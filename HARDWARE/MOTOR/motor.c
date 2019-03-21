@@ -3,7 +3,8 @@
 
 //#define CAR_SPEED 600//小车速度
 #define CAR_STOP  0   //小车停止
-int CAR_SPEED=1000;    //小车速度
+
+int CAR_SPEED=HIGH_SPEED;    //小车速度
  /**************************************************************************
 作者：周恒
 GitHub：

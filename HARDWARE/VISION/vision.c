@@ -91,17 +91,22 @@ void grab_unpack(int qr)
 	{
 		OLED_ShowString(0,45,"l");
 		grab_left_material();
+		grab_firmly();//Ì§Éý
+		servos_init(2);//×ó±ß
 	}
 	if(qr==block_unpack/10%10)//×¥ÖÐ¼ä
 	{
 		OLED_ShowString(0,45,"m");
-
 		grab_mid_material();
+		grab_firmly();//Ì§Éý
+		servos_init(1);//ÖÐ¼ä
 	}
 	if(qr==block_unpack%10)//×¥ÓÒ±ß
 	{
 		OLED_ShowString(0,45,"r");
 		grab_right_material();
+		grab_firmly();//Ì§Éý
+		servos_init(3);//ÓÒ±ß
 	}
 }
 /**********************************************************************************************************

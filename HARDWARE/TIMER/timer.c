@@ -12,5 +12,5 @@ void Timer1_Init(u16 arr,u16 psc)
 	TIM1->DIER|=1<<0;   //允许更新中断				
 	TIM1->DIER|=1<<6;   //允许触发中断	   
 	TIM1->CR1|=0x01;    //使能定时器
-	MY_NVIC_Init(1,0,TIM1_UP_IRQn,2);
+	MY_NVIC_Init(1,1,TIM1_UP_IRQn,2);
 }  
