@@ -44,85 +44,117 @@ int degree2duty_180(int degree)
 //#define b 55
 void servos_put_material()
 {
-	pca_setpwm1(0,0,degree2duty_270(95));
-	time_delay(60);
+	//pca_setpwm1(0,0,degree2duty_270(100));
+	time_delay(20);
+	pca_setpwm1(0,0,degree2duty_270(100));
 	pca_setpwm1(4,0,degree2duty_270(5));//2号机械臂
-	grab_slowly(8,2,7,260,130);//放3号机械臂
+	grab_slowly(8,2,1,20,150);//放3号机械臂
 	pca_setpwm1(12,0,degree2duty_180(100));//张开爪子
-	grab_slowly(8,2,7,130,260);//抬升3号机械臂
+	time_delay(30);
+	grab_slowly(8,2,1,130,20);//抬升3号机械臂
+	grab_slowly(4,2,1,5,60);
 	servos_init(0);
 }
 
+void servos_put_left_material()
+{
+	//pca_setpwm1(0,0,degree2duty_270(100));
+	time_delay(20);
+	pca_setpwm1(0,0,degree2duty_270(150));
+	pca_setpwm1(4,0,degree2duty_270(5));//2号机械臂
+	grab_slowly(8,2,1,20,150);//放3号机械臂
+	pca_setpwm1(12,0,degree2duty_180(100));//张开爪子
+	time_delay(30);
+	grab_slowly(8,2,1,130,20);//抬升3号机械臂
+	grab_slowly(4,2,1,5,60);
+	servos_init(0);
+}
 
+void servos_put_right_material()
+{
+	//pca_setpwm1(0,0,degree2duty_270(100));
+	time_delay(20);
+	pca_setpwm1(0,0,degree2duty_270(55));
+	pca_setpwm1(4,0,degree2duty_270(5));//2号机械臂
+	grab_slowly(8,2,1,20,150);//放3号机械臂
+	pca_setpwm1(12,0,degree2duty_180(100));//张开爪子
+	time_delay(30);
+	grab_slowly(8,2,1,130,20);//抬升3号机械臂
+	grab_slowly(4,2,1,5,60);
+	servos_init(0);
+}
 
 void grab_right_material()
 {
-			pca_setpwm1(0,0,degree2duty_270(65));
-			time_delay(60);
-			pca_setpwm1(8,0,degree2duty_270(230));  //140 - 0  300 - 90			
-			time_delay(60);
-			grab_slowly(4,2,2,25,65);
+			pca_setpwm1(0,0,degree2duty_270(67));
+			time_delay(20);
+			pca_setpwm1(8,0,degree2duty_270(75));  //140 - 0  300 - 90			
+			time_delay(20);
+			grab_slowly(4,2,1,35,100);
 			//pca_setpwm1(4,0,degree2duty_270(70));
 			//time_delay(60);
 			pca_setpwm1(12,0,degree2duty_180(110));
-			time_delay(60);
+			time_delay(20);
 }
 void grab_left_material()
 {
-		pca_setpwm1(0,0,degree2duty_270(120));
-		time_delay(60);
-		pca_setpwm1(8,0,degree2duty_270(225));  //140 - 0  300 - 90		
-		time_delay(60);
-		grab_slowly(4,2,2,25,65);
+		pca_setpwm1(0,0,degree2duty_270(125));
+		time_delay(20);
+		pca_setpwm1(8,0,degree2duty_270(80));  //140 - 0  300 - 90		
+		time_delay(20);
+		grab_slowly(4,2,2,35,105);
 		//pca_setpwm1(4,0,degree2duty_270(65));
-		time_delay(60);
+		time_delay(20);
 		
 		pca_setpwm1(12,0,degree2duty_180(110));
-		time_delay(60);
+		time_delay(20);
 }
 
 void grab_mid_material()
 {
 		pca_setpwm1(0,0,degree2duty_270(100));
-		time_delay(60);
-		pca_setpwm1(8,0,degree2duty_270(225));  //140 - 0  300 - 90
-		time_delay(60);
-		grab_slowly(4,2,2,25,75);
+		time_delay(20);
+		pca_setpwm1(8,0,degree2duty_270(60));  //140 - 0  300 - 90
+		time_delay(20);
+		grab_slowly(4,2,1,35,85);
 		//pca_setpwm1(4,0,degree2duty_270(65));
 		//time_delay(60);
 		pca_setpwm1(12,0,degree2duty_180(110));
-		time_delay(60);
+		time_delay(20);
 }
 void servos_init(char mode)//舵机初始化位置
 {
 		
 		if(mode==0)//开机状态初始化
 		{
-			pca_setpwm1(0,0,degree2duty_270(60));    
-			pca_setpwm1(4,0,degree2duty_270(15));
-	  	pca_setpwm1(8,0,degree2duty_270(260));  //140 - 0  300 - 90			
+			pca_setpwm1(0,0,degree2duty_270(40));   
+			pca_setpwm1(4,0,degree2duty_270(40));
+	  	pca_setpwm1(8,0,degree2duty_270(0));  //140 - 0  300 - 90	
 			pca_setpwm1(12,0,degree2duty_180(135));
 		}
 		if(mode==1)//中间物块抓取初始化
 		{
-			grab_slowly(0,2,1,100,60);
-			grab_slowly(4,2,1,65,15);
-			grab_slowly(8,2,1,225,260);
-			pca_setpwm1(12,0,degree2duty_180(145));
+			//grab_slowly(0,2,1,100,30);
+			pca_setpwm1(0,0,degree2duty_270(30));  
+			grab_slowly(4,2,1,85,40);
+			grab_slowly(8,2,1,65,10);
+			//pca_setpwm1(12,0,degree2duty_180(145));
 		}
 		if(mode==2)//左边物块抓取初始化
 		{
-			grab_slowly(0,2,1,120,60);
-			grab_slowly(4,2,1,65,15);
-			grab_slowly(8,2,1,225,260);
-			pca_setpwm1(12,0,degree2duty_180(145));
+			pca_setpwm1(0,0,degree2duty_270(30));
+			//grab_slowly(0,2,1,120,30);
+			grab_slowly(4,2,1,105,40);
+			grab_slowly(8,2,1,80,20);
+			//pca_setpwm1(12,0,degree2duty_180(145));
 		}
 		if(mode==3)//右边物块抓取初始化
 		{
-			grab_slowly(0,2,1,65,60);
-			grab_slowly(4,2,1,75,15);
-			grab_slowly(8,2,1,230,260);
-			pca_setpwm1(12,0,degree2duty_180(145));
+			pca_setpwm1(0,0,degree2duty_270(30));
+			//grab_slowly(0,2,1,67,30);
+			grab_slowly(4,2,1,100,40);
+			grab_slowly(8,2,1,75,20);
+			//pca_setpwm1(12,0,degree2duty_180(145));
 		}
 		if(mode==4)//回家舵机初始化
 		{
@@ -136,24 +168,25 @@ void servos_ready_grab()//舵机初始化位置
 //		grab_slowly(4,2,1,30,65);
 //		grab_slowly(8,2,1,260,215);
 //		grab_slowly(12,2,1,100,100);
+		
+		pca_setpwm1(4,0,degree2duty_270(55));
+		time_delay(20);
+		pca_setpwm1(8,0,degree2duty_270(60));  //260
+		time_delay(20);
 		pca_setpwm1(0,0,degree2duty_270(105));
-		time_delay(100);
-		pca_setpwm1(4,0,degree2duty_270(25));
-		time_delay(100);
-		pca_setpwm1(8,0,degree2duty_270(260));  //140 - 0  300 - 90
-		time_delay(100);
-		pca_setpwm1(12,0,degree2duty_180(100));
+		time_delay(20);
+		pca_setpwm1(12,0,degree2duty_180(90));
 	//grab_slowly(0,2,1,65,100);
-		time_delay(100);
+		time_delay(10);
 }
 
 void grab_firmly()//抓紧抬升
 {
-	pca_setpwm1(12,0,degree2duty_180(145));//抓紧
+	pca_setpwm1(12,0,degree2duty_180(153));//抓紧
 	//delay_ms(100);
-	time_delay(60);
-	pca_setpwm1(8,0,degree2duty_270(200));//抬升
-	time_delay(60);
+	time_delay(20);
+	pca_setpwm1(8,0,degree2duty_270(95));//抬升 200
+	time_delay(20);
 }
 /**************************************************************************
 函数功能：抓取物块任务

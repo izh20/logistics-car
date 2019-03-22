@@ -3,7 +3,7 @@
 #include "sys.h"
 #define PI 3.14159265
 
-#define TARGET_ANGLE 180;
+#define TARGET_ANGLE 170;
 #define INIT_ANGLE   180
 typedef struct
 {
@@ -31,6 +31,8 @@ extern char place_flag;//放置标志位
 extern char home_arrive_flag;//到家标志位
 extern char grab_flag;//抓取标志位
 extern char circle_count;//循环次数  三个物块共三个循环
+extern char place_order;//物块放置顺序 1为红色 2为绿色，3为黄色
+extern char near_arear1,near_arear2,near_arear3;//接近三个放置物块的区域
 void TIM1_UP_IRQHandler(void);  
 void Get_Angle(u8 way);
 void param_init(void);
@@ -43,4 +45,5 @@ void go_to_scan_QR(void);
 void go_to_scan_QR_1(void);//第二版程序
 void grab_task();//抓取任务
 void time_delay(int nms);//延时函数
+void put_material_task(char order);//此时小车位置在（4，0）坐标处
 #endif

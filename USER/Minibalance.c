@@ -131,12 +131,16 @@ int main(void)
 //			servos_ready_grab();
 			if(wheel_flag==1)//°´¼üÆô¶¯
 			{
-				go_to_scan_QR_1();
-				grab_task();
+//				go_to_scan_QR_1();
+//				grab_task();
 				
-//				servos_put_material();
+				servos_put_material();
+//				block_unpack=123;
+//				qr_first=2;
 //				grab(qr_first);
+//				servos_put_material();
 //				wheel_flag=2;
+				
 			}
 			//servos_ready_grab();
 			//grab_slowly(0,2,4,175,60);

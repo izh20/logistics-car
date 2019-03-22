@@ -27,17 +27,133 @@ Project File Date:  02/11/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
+compiling delay.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\SYSTEM\delay\delay.c: 1 warning, 0 errors
+compiling usart.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\SYSTEM\usart\usart.c: 1 warning, 0 errors
+compiling timer.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\TIMER\timer.c: 1 warning, 0 errors
 compiling Minibalance.c...
-..\BALANCE\CONTROL\control.h(44): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
   void grab_task();//抓取任务
 Minibalance.c(75): warning:  #223-D: function "openmv_start_init" declared implicitly
   	openmv_start_init();
 Minibalance.c: 2 warnings, 0 errors
+compiling IOI2C.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\IIC\IOI2C.c: 1 warning, 0 errors
+compiling LED.C...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\LED\LED.C: 1 warning, 0 errors
+compiling sys.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\SYSTEM\sys\sys.c: 1 warning, 0 errors
+compiling vcan.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\VCAN\vcan.c(43): warning:  #175-D: subscript out of range
+  	wave_form_data[4] =(short)USART2_Date[4];
+..\HARDWARE\VCAN\vcan.c(44): warning:  #175-D: subscript out of range
+  	wave_form_data[5] =(short)USART2_Date[5];
+..\HARDWARE\VCAN\vcan.c: 3 warnings, 0 errors
+compiling infr.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\INFRARED\infr.c: 1 warning, 0 errors
+compiling usart2.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\USART2\usart2.c: 1 warning, 0 errors
+compiling key.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\KEY\key.c: 1 warning, 0 errors
+compiling oled.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\OLED\oled.c: 1 warning, 0 errors
+compiling motor.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\MOTOR\motor.c: 1 warning, 0 errors
+compiling pwm.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\PWM\pwm.c: 1 warning, 0 errors
+compiling pca9685.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\PCA9685\pca9685.c: 1 warning, 0 errors
+compiling servos.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\SERVOS\servos.c(199): warning:  #223-D: function "grab_unpack" declared implicitly
+  	grab_unpack(qr);//根据二维码和物块坐标，来抓取色块
+..\HARDWARE\SERVOS\servos.c(219): warning:  #223-D: function "get_tick" declared implicitly
+  	current_time=get_tick();
+..\HARDWARE\SERVOS\servos.c(215): warning:  #177-D: variable "servos_finish_flag"  was declared but never referenced
+  	int err,i_count=0,servos_finish_flag=0;
+..\HARDWARE\SERVOS\servos.c(216): warning:  #177-D: variable "last_time"  was declared but never referenced
+  	long current_time,last_time;
+..\HARDWARE\SERVOS\servos.c: 5 warnings, 0 errors
+compiling vision.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\HARDWARE\VISION\vision.c(107): warning:  #223-D: function "grab_right_material" declared implicitly
+  		grab_right_material();
+..\HARDWARE\VISION\vision.c(108): warning:  #223-D: function "grab_firmly" declared implicitly
+  		grab_firmly();//抬升
+..\HARDWARE\VISION\vision.c(109): warning:  #223-D: function "servos_init" declared implicitly
+  		servos_init(3);//右边
+..\HARDWARE\VISION\vision.c(214): warning:  #940-D: missing return statement at end of non-void function "vision_pid_control" 
+  }
+..\HARDWARE\VISION\vision.c: 13 warnings, 0 errors
+e 95: Warning:  #223-D: function "servos_init" declared implicitly
+  		servos_init(2);//左边
+..\HARDWARE\VISION\vision.c(100): warning:  #223-D: function "grab_mid_material" declared implicitly
+  		grab_mid_material();
+..\HARDWARE\VISION\vision.c(101): warning:  #223-D: function "grab_firmly" declared implicitly
+  		grab_firmly();//抬升
+..\HARDWARE\VISION\vision.c(102): warning:  #223-D: function "servos_init" declared implicitly
+  		servos_init(1);//中间
+compiling control.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\BALANCE\CONTROL\control.c(43): warning:  #223-D: function "get_tick" declared implicitly
+  			get_tick();//获取时间
+..\BALANCE\CONTROL\control.c(77): warning:  #223-D: function "get_tick" declared implicitly
+  	current_time=get_tick();
+..\BALANCE\CONTROL\control.c(186): warning:  #223-D: function "start_openmv" declared implicitly
+  		start_openmv();//启动openmv	
+..\BALANCE\CONTROL\control.c(490): warning:  #1293-D: assignment in condition
+  			if(near_arear1=3&&material_arrive_flag==9)
+..\BALANCE\CONTROL\control.c: 5 warnings, 0 errors
+compiling MPU6050.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\BALANCE\MPU6050\MPU6050.c: 1 warning, 0 errors
+compiling inv_mpu_dmp_motion_driver.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\BALANCE\DMP\inv_mpu_dmp_motion_driver.c: 1 warning, 0 errors
+compiling inv_mpu.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\BALANCE\DMP\inv_mpu.c: 1 warning, 0 errors
 linking...
-Program Size: Code=34310 RO-data=6314 RW-data=372 ZI-data=2836  
+Program Size: Code=35226 RO-data=6318 RW-data=376 ZI-data=2840  
 FromELF: creating hex file...
-"..\OBJ\main.axf" - 0 Error(s), 2 Warning(s).
-Build Time Elapsed:  00:00:01
+"..\OBJ\main.axf" - 0 Error(s), 39 Warning(s).
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>
