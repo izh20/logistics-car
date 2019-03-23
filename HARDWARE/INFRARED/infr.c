@@ -74,10 +74,7 @@ void  EXTI15_10_IRQHandler()
 				x_location_arrive_flag=1;
 				//car_status.task_mode=LEFT_TRANSLATION;
 			}
-			if(x_axis==5&&y_axis==0&&(car_status.task_mode==FORWARD))
-				near_arear1=1;//接近放置区域1
-			if(x_axis==4&&y_axis==0&&(car_status.task_mode==FORWARD))
-				near_arear3=3;//接近放置区域1
+			
 			EXTI->PR=1<<12;   
 		}
 		
@@ -91,12 +88,6 @@ void  EXTI15_10_IRQHandler()
 			//delay_ms(18);//消抖
 			if(x_axis==4&&car_status.task_mode==BACK)//识别二维码后，判断车是否走到物料前方
 				material_arrive_flag=1;
-			if(x_axis==4&&y_axis==0&&(car_status.task_mode==BACK))//到达物料区域
-				near_arear1=3;
-			if(x_axis==3&&y_axis==0&&(car_status.task_mode==BACK))//到达物料3区域
-			{
-				near_arear3=1;
-			}
 //			if(x_axis==5&&X_INFR_LEFT==1&&car_status.task_mode==BACK)//到达二位码所对应坐标，此标志位为向右移动
 //				qr_right_translation_flag=1;
 			EXTI->PR=1<<13;
@@ -114,10 +105,7 @@ void  EXTI15_10_IRQHandler()
 				grab_flag=1;
 				//car_status.task_mode=STOP;
 			}
-			if(x_axis==5&&y_axis==0&&(car_status.task_mode==RIGHT_TRANSLATION))
-				near_arear1=2;//物料1放置完成后，接近物料存放区
-			if(x_axis==3&&y_axis==0&&(car_status.task_mode==RIGHT_TRANSLATION))
-				near_arear3=2;//物料3放置完成后，接近物料存放区
+			
 			delay_ms(18);//消抖
 			
 			if(Y_INFR_RIGHT==1)
@@ -141,7 +129,7 @@ void  EXTI15_10_IRQHandler()
 //				y_location_arrive_flag=1;
 //				//car_status.task_mode=STOP;
 //			}
-			if(x_axis==4&&y_axis==1&&(car_status.task_mode==LEFT_TRANSLATION))//当小车即将到达物料放置区时，触发中断
+			if(x_axis==4&&y_axis==2&&(car_status.task_mode==LEFT_TRANSLATION))//当小车即将到达物料放置区时，触发中断
 			{
 				place_flag=1;
 			}
@@ -157,9 +145,6 @@ void  EXTI15_10_IRQHandler()
 				//car_status.task_mode=STOP;
 			}
 			
-			
-			if(x_axis==5&&y_axis==0&&(car_status.task_mode==RIGHT_TRANSLATION))
-				near_arear1=2;//物料1放置完成后，接近物料存放区
 			EXTI->PR=1<<15; 
 		}
 }

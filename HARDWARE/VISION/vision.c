@@ -119,15 +119,15 @@ void put_material(int qr)
 {
 	if(qr==1)//放右边
 	{
-		
+		servos_put_right_material();
 	}
 	if(qr==2)//放中间
 	{
-		
+		servos_put_mid_material();
 	}
 	if(qr==3)//放左边
 	{
-		
+		servos_put_left_material();
 	}
 	
 }

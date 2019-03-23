@@ -2,8 +2,8 @@
 #define __MOTOR_H
 #include "sys.h"
 
-#define HIGH_SPEED 1250
-#define MID_SPEED  1150
+#define HIGH_SPEED 1100
+#define MID_SPEED  1100
 #define LOW_SPEED  1100
 
 typedef struct

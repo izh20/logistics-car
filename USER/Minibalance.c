@@ -91,6 +91,7 @@ int main(void)
 //EXTI_Init();											//红外传感器外部中断，用于定位
  uart2_init(36,57600);					//初始化串口2
  Timer1_Init(4999,71);           //=====5MS进一次中断服务函数
+ block_unpack=123;
 	while(1)
 		{
 			OLED_ShowNumber(0,10,(int)Yaw,3,12);
@@ -131,16 +132,16 @@ int main(void)
 //			servos_ready_grab();
 			if(wheel_flag==1)//按键启动
 			{
-//				go_to_scan_QR_1();
-//				grab_task();
-				
-				servos_put_material();
-//				block_unpack=123;
-//				qr_first=2;
-//				grab(qr_first);
-//				servos_put_material();
-//				wheel_flag=2;
-				
+				go_to_scan_QR_1();
+				grab_task();
+				//qr_first=1;
+				//servos_put_mid_material();
+//				servos_ready_grab();
+//				grab_mid_material();
+////				grab_firmly();//抬升
+//				servos_init(1);//左边
+//				//grab(qr_first);
+			//	wheel_flag=2;
 			}
 			//servos_ready_grab();
 			//grab_slowly(0,2,4,175,60);
