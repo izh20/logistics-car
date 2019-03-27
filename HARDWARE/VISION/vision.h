@@ -22,6 +22,7 @@ extern uint16_t block_unpack;//色块顺序  红1绿2蓝3
 extern uint8_t qr_code;//二维码的数据
 extern uint8_t qr_code_flag;//识别标志位 1为未识别，0为识别成功
 extern uint16_t target_x_err;//色块x轴误差
+extern char scan_block_success_flag;//色块识别成功标志位
 void openmv_start_init();
 //extern uint8_t USART2_Date[4];//串口2接收到的数据
 void get_vision_data(void);

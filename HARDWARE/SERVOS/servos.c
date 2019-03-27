@@ -1,5 +1,7 @@
 #include "servos.h"
 
+#define OPEN_CLAW 90
+#define CLOSE_CLAW 150
 SERVOS servos_yaw,servos_pitch1,servos_pitch2,servos_claw;
 
 /**************************************************************************
@@ -44,151 +46,211 @@ int degree2duty_180(int degree)
 //#define b 55
 void servos_put_mid_material()
 {
-	//pca_setpwm1(0,0,degree2duty_270(100));
 	time_delay(20);
-	pca_setpwm1(0,0,degree2duty_270(100));
+	pca_setpwm1(0,0,degree2duty_270(95));
 	pca_setpwm1(4,0,degree2duty_270(5));//2号机械臂
 	grab_slowly(8,2,1,20,150);//放3号机械臂
-	pca_setpwm1(12,0,degree2duty_180(100));//张开爪子
-	time_delay(30);
+	time_delay(80);
+	pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));//张开爪子
+	time_delay(80);
+	car_status.task_mode=RIGHT_TRANSLATION;
+	time_delay(40);
+	car_status.task_mode=STOP;
 	grab_slowly(8,2,1,130,20);//抬升3号机械臂
-	grab_slowly(4,2,1,5,60);
-	servos_init(0);
+	//pca_setpwm1(8,0,degree2duty_270(20));
+	//grab_slowly(4,2,1,5,60);
+	//servos_init(0);
 }
 
 void servos_put_left_material()
 {
 	//pca_setpwm1(0,0,degree2duty_270(100));
 	time_delay(20);
-	pca_setpwm1(0,0,degree2duty_270(150));
+	pca_setpwm1(0,0,degree2duty_270(160));
 	pca_setpwm1(4,0,degree2duty_270(5));//2号机械臂
 	grab_slowly(8,2,1,20,150);//放3号机械臂
-	pca_setpwm1(12,0,degree2duty_180(100));//张开爪子
-	time_delay(30);
+	time_delay(80);
+	pca_setpwm1(12,0,degree2duty_270(100));//张开爪子
+	time_delay(80);
+	car_status.task_mode=RIGHT_TRANSLATION;
+	time_delay(40);
+	car_status.task_mode=STOP;
 	grab_slowly(8,2,1,130,20);//抬升3号机械臂
-	grab_slowly(4,2,1,5,60);
-	servos_init(0);
+	//grab_slowly(4,2,1,5,60);
+	//servos_init(0);
 }
 
 void servos_put_right_material()
 {
-	//pca_setpwm1(0,0,degree2duty_270(100));
-	time_delay(20);
-	pca_setpwm1(0,0,degree2duty_270(55));
+	
+	pca_setpwm1(0,0,degree2duty_270(50));
 	pca_setpwm1(4,0,degree2duty_270(5));//2号机械臂
 	grab_slowly(8,2,1,20,150);//放3号机械臂
-	pca_setpwm1(12,0,degree2duty_180(100));//张开爪子
-	time_delay(30);
+	time_delay(80);
+	pca_setpwm1(12,0,degree2duty_270(100));//张开爪子
+	time_delay(80);
+	car_status.task_mode=RIGHT_TRANSLATION;
+	time_delay(40);
+	car_status.task_mode=STOP;
 	grab_slowly(8,2,1,130,20);//抬升3号机械臂
-	grab_slowly(4,2,1,5,60);
-	servos_init(0);
+	//grab_slowly(4,2,1,5,60);
+	//servos_init(0);
 }
 
 void grab_right_material()
 {
-			pca_setpwm1(0,0,degree2duty_270(67));
-			time_delay(40);
-			pca_setpwm1(8,0,degree2duty_270(75));  //140 - 0  300 - 90			
-			time_delay(40);
-			grab_slowly(4,2,1,35,100);
+			pca_setpwm1(0,0,degree2duty_270(55));
+			time_delay(20);
+			pca_setpwm1(0,0,degree2duty_270(60));
+			pca_setpwm1(8,0,degree2duty_270(60));  //140 - 0  300 - 90			
+			time_delay(20);
+			pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
+			time_delay(20);
+			grab_slowly(4,2,1,35,85);
 			//pca_setpwm1(4,0,degree2duty_270(70));
 			//time_delay(60);
-			pca_setpwm1(12,0,degree2duty_180(110));
-			time_delay(40);
+			
+			
 }
 void grab_left_material()
 {
 		pca_setpwm1(0,0,degree2duty_270(125));
-		time_delay(40);
-		pca_setpwm1(8,0,degree2duty_270(75));  //140 - 0  300 - 90		
-		time_delay(40);
-		grab_slowly(4,2,2,35,105);
+		time_delay(20);
+		pca_setpwm1(0,0,degree2duty_270(125));
+		pca_setpwm1(8,0,degree2duty_270(60));  //140 - 0  300 - 90		
+		time_delay(20);
+		pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
+		time_delay(20);
+		grab_slowly(4,2,2,35,87);
 		//pca_setpwm1(4,0,degree2duty_270(65));
-		time_delay(40);
+		//time_delay(40);
 		
-		pca_setpwm1(12,0,degree2duty_180(110));
-		time_delay(40);
+		
+		//time_delay(40);
 }
 
 void grab_mid_material()
 {
-		pca_setpwm1(0,0,degree2duty_270(100));
-		time_delay(40);
-		pca_setpwm1(8,0,degree2duty_270(55));  //140 - 0  300 - 90
-		time_delay(40);
-		grab_slowly(4,2,1,35,85);
+		pca_setpwm1(0,0,degree2duty_270(95));
+		time_delay(20);
+		pca_setpwm1(0,0,degree2duty_270(95));
+		pca_setpwm1(8,0,degree2duty_270(50));  //140 - 0  300 - 90
+		time_delay(20);
+		pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
+		time_delay(20);
+		grab_slowly(4,2,1,35,73);
 		//pca_setpwm1(4,0,degree2duty_270(65));
 		//time_delay(60);
-		pca_setpwm1(12,0,degree2duty_180(110));
-		time_delay(40);
 }
 void servos_init(char mode)//舵机初始化位置
 {
 		
 		if(mode==0)//开机状态初始化
 		{
-			pca_setpwm1(0,0,degree2duty_270(40));   
-			pca_setpwm1(4,0,degree2duty_270(40));
-	  	pca_setpwm1(8,0,degree2duty_270(0));  //140 - 0  300 - 90	
-			pca_setpwm1(12,0,degree2duty_180(135));
+			pca_setpwm1(0,0,degree2duty_270(20));   
+			pca_setpwm1(4,0,degree2duty_270(10));
+	  	pca_setpwm1(8,0,degree2duty_270(25));  //140 - 0  300 - 90	
+			pca_setpwm1(12,0,degree2duty_270(80));
 		}
 		if(mode==1)//中间物块抓取初始化
 		{
 			//grab_slowly(0,2,1,100,30);
 			pca_setpwm1(0,0,degree2duty_270(60));  
-			grab_slowly(0,2,1,60,30);
-			grab_slowly(4,2,1,85,40);
-			grab_slowly(8,2,1,65,10);
-			//pca_setpwm1(12,0,degree2duty_180(145));
+			grab_slowly(0,2,1,60,20);
+			grab_slowly(4,2,1,85,10);
+			grab_slowly(8,2,1,65,25);
 		}
 		if(mode==2)//左边物块抓取初始化
 		{
 			pca_setpwm1(0,0,degree2duty_270(80));
 			
-			grab_slowly(0,2,1,80,30);
-			grab_slowly(4,2,1,105,40);
-			grab_slowly(8,2,1,80,20);
-			//pca_setpwm1(12,0,degree2duty_180(145));
+			grab_slowly(0,2,1,80,20);
+			grab_slowly(4,2,1,105,10);
+			grab_slowly(8,2,1,80,25);
 		}
 		if(mode==3)//右边物块抓取初始化
 		{
-			pca_setpwm1(0,0,degree2duty_270(30));
+			pca_setpwm1(0,0,degree2duty_270(20));
 			//grab_slowly(0,2,1,67,30);
-			grab_slowly(4,2,1,100,40);
-			grab_slowly(8,2,1,75,20);
-			//pca_setpwm1(12,0,degree2duty_180(145));
+			grab_slowly(4,2,1,100,10);
+			grab_slowly(8,2,1,75,25);
 		}
 		if(mode==4)//回家舵机初始化
 		{
 			
 		}
 }
-
-void servos_ready_grab()//舵机初始化位置
-{		
-		
-//		grab_slowly(4,2,1,30,65);
-//		grab_slowly(8,2,1,260,215);
-//		grab_slowly(12,2,1,100,100);
-		
-		pca_setpwm1(4,0,degree2duty_270(55));
+extern uint16_t block_unpack;//色块顺序  红1绿2蓝3
+void servos_ready_grab(int qr)//舵机初始化位置
+{	
+	if(qr==block_unpack/100)//准备抓左边
+	{
+		pca_setpwm1(0,0,degree2duty_270(125));
 		time_delay(40);
-		pca_setpwm1(8,0,degree2duty_270(60));  //260
+		pca_setpwm1(8,0,degree2duty_270(30));  //140 - 0  300 - 90		
 		time_delay(40);
-		pca_setpwm1(0,0,degree2duty_270(105));
+		//grab_slowly(4,2,2,35,96);
+		pca_setpwm1(4,0,degree2duty_270(30));
 		time_delay(40);
-		pca_setpwm1(12,0,degree2duty_180(90));
-	//grab_slowly(0,2,1,65,100);
-		time_delay(10);
+		pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
+		time_delay(40);
+	}
+	if(qr==block_unpack/10%10)//准备抓中间
+	{
+		pca_setpwm1(0,0,degree2duty_270(95));
+		time_delay(40);
+		pca_setpwm1(8,0,degree2duty_270(30));  //140 - 0  300 - 90		
+		time_delay(40);
+		//grab_slowly(4,2,2,35,96);
+		pca_setpwm1(4,0,degree2duty_270(30));
+		time_delay(40);
+		pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
+		time_delay(40);
+	}
+	if(qr==block_unpack/10%10)//准备抓右边
+	{
+		pca_setpwm1(0,0,degree2duty_270(67));
+		time_delay(40);
+		pca_setpwm1(8,0,degree2duty_270(30));  //140 - 0  300 - 90		
+		time_delay(40);
+		//grab_slowly(4,2,2,35,96);
+		pca_setpwm1(4,0,degree2duty_270(30));
+		time_delay(40);
+		pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
+		time_delay(40);
+	}
+	
+	
+//		pca_setpwm1(4,0,degree2duty_270(30));
+//		time_delay(20);
+//		pca_setpwm1(8,0,degree2duty_270(30));  //260
+//		time_delay(20);
+//		pca_setpwm1(0,0,degree2duty_270(100));
+//		time_delay(20);
+//		pca_setpwm1(12,0,degree2duty_270(110));
+//	//grab_slowly(0,2,1,65,100);
+//		time_delay(10);
 }
 
-void grab_firmly()//抓紧抬升
+void grab_firmly()//抓紧抬升 并回中
 {
-	pca_setpwm1(12,0,degree2duty_180(153));//抓紧
-	//delay_ms(100);
-	time_delay(30);
-	pca_setpwm1(8,0,degree2duty_270(105));//抬升 200
-	time_delay(20);
+	time_delay(150);
+	pca_setpwm1(12,0,degree2duty_270(CLOSE_CLAW));//抓紧
+	time_delay(150);
+//	pca_setpwm1(12,0,degree2duty_270(CLOSE_CLAW));//抓紧
+//	time_delay(50);
+	grab_slowly(4,2,1,60,30);
+	time_delay(50);
+	pca_setpwm1(8,0,degree2duty_270(30));
+	//grab_slowly(8,2,1,80,110);
+	//pca_setpwm1(8,0,degree2duty_270(105));//抬升 200
+	
+	
+	//pca_setpwm1(0,0,degree2duty_270(100));//yaw轴回中
+//  grab_slowly(4,2,1,85,20);
+//	time_delay(40);
+//	grab_slowly(8,2,1,60,30);
+		
 }
 /**************************************************************************
 函数功能：抓取物块任务
@@ -197,7 +259,8 @@ void grab_firmly()//抓紧抬升
 **************************************************************************/
 void grab(int qr)
 {
-	servos_ready_grab();
+	//servos_ready_grab();
+	time_delay(20);
 	grab_unpack(qr);//根据二维码和物块坐标，来抓取色块
 }
 

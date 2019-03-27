@@ -114,7 +114,7 @@ void get_qr_code()
 		USART1_RX_BUF=0;
 		qr_codes=(USART1_Date[0]&0x0f)*100+(USART1_Date[1]&0x0f)*10+(USART1_Date[2]&0x0f);
 		OLED_ShowNumber(45,25,(int)qr_codes,3,12);
-		qr_first=qr_codes/100;//第一次抓取物块的颜色
+		qr_first=	qr_codes/100;//第一次抓取物块的颜色
 		qr_second=qr_codes/10%10;//第二次抓取物块的颜色
 		qr_third=qr_codes%10;//第三次抓取物块的颜色
 		

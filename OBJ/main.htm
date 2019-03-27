@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\main.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\main.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Mar 23 22:10:58 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Mar 26 17:12:33 2019
 <BR><P>
 <H3>Maximum Stack Usage =        280 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -433,33 +433,33 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[47]"></a>main</STRONG> (Thumb, 288 bytes, Stack size 8 bytes, minibalance.o(.text))
+<P><STRONG><a name="[47]"></a>main</STRONG> (Thumb, 306 bytes, Stack size 8 bytes, minibalance.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 280 + Unknown Stack Size
 <LI>Call Chain = main &rArr; DMP_Init &rArr; run_self_test &rArr; mpu_run_self_test &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cWrite &rArr; IIC_Send_Byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setfreq1
 <LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_reset1
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;param_init
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;param_init
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;openmv_start_init
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;infr_Init
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;infr_Init
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_task
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;go_to_scan_QR_1
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_init
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_init
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1_Init
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_PWM_init
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Stm32_Clock_Init
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNumber
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Gram
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Init
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Init
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JTAG_Set
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
@@ -492,7 +492,7 @@ Global Symbols
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;click
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI9_5_IRQHandler
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setfreq1
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
 <P><STRONG><a name="[68]"></a>MY_NVIC_SetVectorTable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, sys.o(.text))
@@ -510,18 +510,18 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;infr_Init
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;infr_Init
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Timer1_Init
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Init
 </UL>
 
 <P><STRONG><a name="[8b]"></a>Ex_NVIC_Config</STRONG> (Thumb, 146 bytes, Stack size 16 bytes, sys.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Ex_NVIC_Config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_Init
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;infr_Init
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Init
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;infr_Init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Init
 </UL>
 
 <P><STRONG><a name="[67]"></a>MYRCC_DeInit</STRONG> (Thumb, 90 bytes, Stack size 4 bytes, sys.o(.text))
@@ -738,7 +738,7 @@ Global Symbols
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyro_self_test
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_accel_prod_shift
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[7b]"></a>I2C_ReadOneByte</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, ioi2c.o(.text))
@@ -824,7 +824,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[58]"></a>LED_Init</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, led.o(.text))
+<P><STRONG><a name="[56]"></a>LED_Init</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, led.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -836,7 +836,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Display_Off
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Display_On
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Gram
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
 <P><STRONG><a name="[62]"></a>OLED_Refresh_Gram</STRONG> (Thumb, 70 bytes, Stack size 12 bytes, oled.o(.text))
@@ -862,7 +862,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Gram
 </UL>
 <BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
 <P><STRONG><a name="[87]"></a>OLED_DrawPoint</STRONG> (Thumb, 100 bytes, Stack size 20 bytes, oled.o(.text))
@@ -909,17 +909,18 @@ Global Symbols
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
 </UL>
 
-<P><STRONG><a name="[5b]"></a>OLED_Init</STRONG> (Thumb, 348 bytes, Stack size 8 bytes, oled.o(.text))
+<P><STRONG><a name="[59]"></a>OLED_Init</STRONG> (Thumb, 348 bytes, Stack size 8 bytes, oled.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = OLED_Init &rArr; OLED_Clear &rArr; OLED_Refresh_Gram &rArr; OLED_WR_Byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_WR_Byte
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_task
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[59]"></a>KEY_Init</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, key.o(.text))
+<P><STRONG><a name="[57]"></a>KEY_Init</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, key.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = KEY_Init &rArr; MY_NVIC_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ex_NVIC_Config
@@ -943,7 +944,7 @@ Global Symbols
 
 <P><STRONG><a name="[185]"></a>Long_Press</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, key.o(.text), UNUSED)
 
-<P><STRONG><a name="[5a]"></a>infr_Init</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, infr.o(.text))
+<P><STRONG><a name="[58]"></a>infr_Init</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, infr.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = infr_Init &rArr; MY_NVIC_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ex_NVIC_Config
@@ -957,7 +958,7 @@ Global Symbols
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MY_NVIC_Init
 </UL>
 
-<P><STRONG><a name="[36]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 360 bytes, Stack size 8 bytes, infr.o(.text))
+<P><STRONG><a name="[36]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 362 bytes, Stack size 8 bytes, infr.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EXTI15_10_IRQHandler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
@@ -972,7 +973,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[8e]"></a>infr_control</STRONG> (Thumb, 394 bytes, Stack size 24 bytes, infr.o(.text))
+<P><STRONG><a name="[8e]"></a>infr_control</STRONG> (Thumb, 232 bytes, Stack size 24 bytes, infr.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = infr_control &rArr; __aeabi_dsub
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_motor_pwm
@@ -986,7 +987,7 @@ Global Symbols
 
 <P><STRONG><a name="[186]"></a>usart2_send</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, usart2.o(.text), UNUSED)
 
-<P><STRONG><a name="[5e]"></a>uart2_init</STRONG> (Thumb, 228 bytes, Stack size 40 bytes, usart2.o(.text))
+<P><STRONG><a name="[5c]"></a>uart2_init</STRONG> (Thumb, 228 bytes, Stack size 40 bytes, usart2.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = uart2_init &rArr; MY_NVIC_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MY_NVIC_Init
@@ -999,7 +1000,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5d]"></a>chassis_init</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, motor.o(.text))
+<P><STRONG><a name="[5b]"></a>chassis_init</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, motor.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1106,13 +1107,13 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_firmly
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_ready_grab
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
 </UL>
 
@@ -1174,13 +1175,13 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_firmly
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_ready_grab
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
 </UL>
 
@@ -1192,16 +1193,7 @@ Global Symbols
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_firmly
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_ready_grab
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
 </UL>
 
 <P><STRONG><a name="[ab]"></a>grab_slowly</STRONG> (Thumb, 162 bytes, Stack size 48 bytes, servos.o(.text))
@@ -1213,132 +1205,119 @@ Global Symbols
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNumber
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_firmly
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
 </UL>
 
-<P><STRONG><a name="[ad]"></a>servos_init</STRONG> (Thumb, 274 bytes, Stack size 16 bytes, servos.o(.text))
+<P><STRONG><a name="[ad]"></a>servos_put_mid_material</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = servos_put_mid_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put_material
+</UL>
+
+<P><STRONG><a name="[af]"></a>servos_put_left_material</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = servos_put_left_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put_material
+</UL>
+
+<P><STRONG><a name="[b0]"></a>servos_put_right_material</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = servos_put_right_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
+</UL>
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put_material
+</UL>
+
+<P><STRONG><a name="[b1]"></a>grab_right_material</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = grab_right_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
+</UL>
+
+<P><STRONG><a name="[b2]"></a>grab_left_material</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = grab_left_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
+</UL>
+
+<P><STRONG><a name="[b3]"></a>grab_mid_material</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = grab_mid_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
+</UL>
+
+<P><STRONG><a name="[b4]"></a>servos_init</STRONG> (Thumb, 306 bytes, Stack size 16 bytes, servos.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = servos_init &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
+</UL>
+
+<P><STRONG><a name="[b5]"></a>servos_ready_grab</STRONG> (Thumb, 352 bytes, Stack size 16 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = servos_ready_grab &rArr; pca_setpwm1 &rArr; pca_write1 &rArr; IIC_Send_Byte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
+</UL>
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_task
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;go_to_scan_QR_1
+</UL>
+
+<P><STRONG><a name="[b6]"></a>grab_firmly</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = grab_firmly &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
+</UL>
+
+<P><STRONG><a name="[b7]"></a>grab</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, servos.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = grab &rArr; grab_unpack &rArr; grab_firmly &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
-</UL>
-
-<P><STRONG><a name="[ae]"></a>servos_put_mid_material</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = servos_put_mid_material &rArr; servos_init &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
-</UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
-</UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put_material
-</UL>
-
-<P><STRONG><a name="[b0]"></a>servos_put_left_material</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = servos_put_left_material &rArr; servos_init &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
-</UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
-</UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put_material
-</UL>
-
-<P><STRONG><a name="[b1]"></a>servos_put_right_material</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = servos_put_right_material &rArr; servos_init &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
-</UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
-</UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put_material
-</UL>
-
-<P><STRONG><a name="[b2]"></a>grab_right_material</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = grab_right_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
-</UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
-</UL>
-<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
-</UL>
-
-<P><STRONG><a name="[b3]"></a>grab_left_material</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = grab_left_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
-</UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
-</UL>
-<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
-</UL>
-
-<P><STRONG><a name="[b4]"></a>grab_mid_material</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = grab_mid_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
-</UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
-</UL>
-<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
-</UL>
-
-<P><STRONG><a name="[b5]"></a>servos_ready_grab</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = servos_ready_grab &rArr; degree2duty_180 &rArr; __aeabi_dmul
-</UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
-</UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab
-</UL>
-
-<P><STRONG><a name="[b6]"></a>grab_firmly</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = grab_firmly &rArr; degree2duty_180 &rArr; __aeabi_dmul
-</UL>
-<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_180
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pca_setpwm1
-</UL>
-<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
-</UL>
-
-<P><STRONG><a name="[b7]"></a>grab</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, servos.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = grab &rArr; grab_unpack &rArr; grab_mid_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
-</UL>
-<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_ready_grab
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_task
 </UL>
@@ -1347,7 +1326,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_vision_data
 </UL>
 
-<P><STRONG><a name="[b9]"></a>get_vision_data</STRONG> (Thumb, 58 bytes, Stack size 4 bytes, vision.o(.text))
+<P><STRONG><a name="[b9]"></a>get_vision_data</STRONG> (Thumb, 64 bytes, Stack size 4 bytes, vision.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = get_vision_data
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Data_Transform
@@ -1359,7 +1338,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vision_status_detection
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_slowly
 </UL>
 
@@ -1373,35 +1352,31 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
 <P><STRONG><a name="[b8]"></a>grab_unpack</STRONG> (Thumb, 132 bytes, Stack size 8 bytes, vision.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = grab_unpack &rArr; grab_mid_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = grab_unpack &rArr; grab_firmly &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_firmly
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_firmly
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab
 </UL>
 
 <P><STRONG><a name="[bb]"></a>put_material</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, vision.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = put_material &rArr; servos_put_right_material &rArr; servos_init &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = put_material &rArr; servos_put_right_material &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
+<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_task
 </UL>
 
-<P><STRONG><a name="[bc]"></a>vision_status_detection</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, vision.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = vision_status_detection &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
-</UL>
-<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tick
+<P><STRONG><a name="[bc]"></a>vision_status_detection</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, vision.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tick
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
-</UL>
-<BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
 </UL>
 
 <P><STRONG><a name="[be]"></a>vision_pid_control</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, vision.o(.text), UNUSED)
@@ -1440,34 +1415,35 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
 </UL>
 
-<P><STRONG><a name="[27]"></a>TIM1_UP_IRQHandler</STRONG> (Thumb, 134 bytes, Stack size 8 bytes, control.o(.text))
+<P><STRONG><a name="[27]"></a>TIM1_UP_IRQHandler</STRONG> (Thumb, 144 bytes, Stack size 8 bytes, control.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = TIM1_UP_IRQHandler &rArr; Read_DMP &rArr; dmp_read_fifo &rArr; mpu_read_fifo_stream &rArr; mpu_reset_fifo &rArr; i2cWrite &rArr; IIC_Send_Byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_DMP
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_mode_select
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;straight_control
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_locate
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vision_status_detection
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tick
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_init
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chassis_angle_control
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;infr_control
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md.o(RESET)
 </UL>
-<P><STRONG><a name="[af]"></a>time_delay</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, control.o(.text))
+<P><STRONG><a name="[ae]"></a>time_delay</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, control.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = time_delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_firmly
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_unpack
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_firmly
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_ready_grab
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_mid_material
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_left_material
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_right_material
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_right_material
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_left_material
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_put_mid_material
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_task
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;go_to_scan_QR_1
 </UL>
@@ -1476,26 +1452,31 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 
-<P><STRONG><a name="[63]"></a>go_to_scan_QR_1</STRONG> (Thumb, 326 bytes, Stack size 8 bytes, control.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = go_to_scan_QR_1 &rArr; time_delay
+<P><STRONG><a name="[63]"></a>go_to_scan_QR_1</STRONG> (Thumb, 340 bytes, Stack size 8 bytes, control.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = go_to_scan_QR_1 &rArr; servos_ready_grab &rArr; pca_setpwm1 &rArr; pca_write1 &rArr; IIC_Send_Byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;start_openmv
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_ready_grab
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 </UL>
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[64]"></a>grab_task</STRONG> (Thumb, 870 bytes, Stack size 8 bytes, control.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = grab_task &rArr; put_material &rArr; servos_put_right_material &rArr; servos_init &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
+<P><STRONG><a name="[64]"></a>grab_task</STRONG> (Thumb, 1122 bytes, Stack size 8 bytes, control.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = grab_task &rArr; grab &rArr; grab_unpack &rArr; grab_firmly &rArr; grab_slowly &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;put_material
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;time_delay
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servos_ready_grab
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 </UL>
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[c6]"></a>car_locate_control</STRONG> (Thumb, 370 bytes, Stack size 0 bytes, control.o(.text), UNUSED)
+<P><STRONG><a name="[c6]"></a>car_locate_control</STRONG> (Thumb, 284 bytes, Stack size 0 bytes, control.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task_planning
 </UL>
 
@@ -1517,7 +1498,7 @@ Global Symbols
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 
-<P><STRONG><a name="[5c]"></a>param_init</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, control.o(.text))
+<P><STRONG><a name="[5a]"></a>param_init</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, control.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1548,7 +1529,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_motion_interrupt
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_run_self_test
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[d2]"></a>mpu_set_bypass</STRONG> (Thumb, 328 bytes, Stack size 16 bytes, inv_mpu.o(.text))
@@ -1587,7 +1568,7 @@ Global Symbols
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_run_self_test
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_accel_mode
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[d5]"></a>mpu_set_lpf</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, inv_mpu.o(.text))
@@ -1625,7 +1606,7 @@ Global Symbols
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_run_self_test
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_dmp_state
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[d8]"></a>mpu_set_accel_fsr</STRONG> (Thumb, 132 bytes, Stack size 16 bytes, inv_mpu.o(.text))
@@ -1664,7 +1645,7 @@ Global Symbols
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[dd]"></a>myget_ms</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, inv_mpu.o(.text))
@@ -1775,7 +1756,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_motion_interrupt
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_run_self_test
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[ec]"></a>mpu_run_self_test</STRONG> (Thumb, 278 bytes, Stack size 88 bytes, inv_mpu.o(.text))
@@ -1879,7 +1860,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_load_firmware
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[f8]"></a>dmp_set_orientation</STRONG> (Thumb, 290 bytes, Stack size 32 bytes, inv_mpu_dmp_motion_driver.o(.text))
@@ -1887,7 +1868,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[f9]"></a>dmp_set_gyro_bias</STRONG> (Thumb, 294 bytes, Stack size 24 bytes, inv_mpu_dmp_motion_driver.o(.text))
@@ -1912,7 +1893,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[193]"></a>dmp_get_fifo_rate</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, inv_mpu_dmp_motion_driver.o(.text), UNUSED)
@@ -2050,7 +2031,7 @@ Global Symbols
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[194]"></a>dmp_get_enabled_features</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, inv_mpu_dmp_motion_driver.o(.text), UNUSED)
@@ -2103,7 +2084,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IICwriteBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
 </UL>
 
 <P><STRONG><a name="[116]"></a>MPU6050_setFullScaleGyroRange</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, mpu6050.o(.text))
@@ -2111,7 +2092,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IICwriteBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
 </UL>
 
 <P><STRONG><a name="[117]"></a>MPU6050_setFullScaleAccelRange</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, mpu6050.o(.text))
@@ -2119,7 +2100,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IICwriteBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
 </UL>
 
 <P><STRONG><a name="[118]"></a>MPU6050_setSleepEnabled</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, mpu6050.o(.text))
@@ -2127,7 +2108,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IICwriteBit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
 </UL>
 
 <P><STRONG><a name="[119]"></a>MPU6050_getDeviceID</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, mpu6050.o(.text), UNUSED)
@@ -2145,7 +2126,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IICwriteBit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
 </UL>
 
 <P><STRONG><a name="[11c]"></a>MPU6050_setI2CBypassEnabled</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, mpu6050.o(.text))
@@ -2153,10 +2134,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IICwriteBit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_initialize
 </UL>
 
-<P><STRONG><a name="[56]"></a>MPU6050_initialize</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, mpu6050.o(.text))
+<P><STRONG><a name="[5d]"></a>MPU6050_initialize</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, mpu6050.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MPU6050_initialize &rArr; MPU6050_setFullScaleAccelRange &rArr; IICwriteBits &rArr; IICwriteByte &rArr; IICwriteBytes &rArr; IIC_Send_Byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_setI2CBypassEnabled
@@ -2169,7 +2150,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[57]"></a>DMP_Init</STRONG> (Thumb, 194 bytes, Stack size 16 bytes, mpu6050.o(.text))
+<P><STRONG><a name="[5e]"></a>DMP_Init</STRONG> (Thumb, 194 bytes, Stack size 16 bytes, mpu6050.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272 + Unknown Stack Size
 <LI>Call Chain = DMP_Init &rArr; run_self_test &rArr; mpu_run_self_test &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cWrite &rArr; IIC_Send_Byte
 </UL>
@@ -2240,7 +2221,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_file
 </UL>
 <BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_self_test
 </UL>
 
@@ -2665,7 +2646,7 @@ Global Symbols
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_DMP
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kalman_Filter
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_Temperature
 </UL>
 
@@ -2705,7 +2686,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_tap_thresh
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
 </UL>
 
 <P><STRONG><a name="[150]"></a>_ffixu</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, ffixu.o(x$fpl$ffixu), UNUSED)
@@ -2720,6 +2701,8 @@ Global Symbols
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Angle
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;straight_control
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_task
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;go_to_scan_QR_1
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_Temperature
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_self_test
 </UL>
@@ -2732,7 +2715,7 @@ Global Symbols
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyro_self_test
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kalman_Filter
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
 </UL>
 
 <P><STRONG><a name="[1a8]"></a>_ffltu</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$ffltu), UNUSED)
@@ -2766,7 +2749,7 @@ Global Symbols
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;straight_control
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degree2duty_270
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_self_test
 </UL>
 
@@ -2809,7 +2792,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kalman_Filter
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;straight_control
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
 </UL>
 
 <P><STRONG><a name="[155]"></a>_frsb</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, faddsub_clz.o(x$fpl$frsb), UNUSED)
@@ -2930,7 +2913,7 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_row_2_scale
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[113]"></a>run_self_test</STRONG> (Thumb, 150 bytes, Stack size 48 bytes, mpu6050.o(.text))
@@ -2947,7 +2930,7 @@ Local Symbols
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
+<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMP_Init
 </UL>
 
 <P><STRONG><a name="[146]"></a>_dadd1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, daddsub_clz.o(x$fpl$dadd), UNUSED)

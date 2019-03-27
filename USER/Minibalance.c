@@ -80,8 +80,7 @@ int main(void)
 	pca_reset1();
 	pca_setfreq1(50);
 	/*************PCA初始化 end****************/
-  MPU6050_initialize();           //=====MPU6050初始化	
-	DMP_Init();                     //初始化DMP   
+   
 	LED_Init();                     //=====初始化与 LED 连接的硬件接口
 	KEY_Init();                     //=====按键初始化
 	infr_Init();										//红外传感器外部中断，用于定位和循迹
@@ -90,7 +89,11 @@ int main(void)
 	chassis_init();										//初始化电机引脚
 //EXTI_Init();											//红外传感器外部中断，用于定位
  uart2_init(36,57600);					//初始化串口2
- Timer1_Init(4999,71);           //=====5MS进一次中断服务函数
+ 
+  MPU6050_initialize();           //=====MPU6050初始化	
+	DMP_Init();                     //初始化DMP 
+	
+ Timer1_Init(2999,71);           //=====5MS进一次中断服务函数
  block_unpack=123;
 	while(1)
 		{
@@ -101,6 +104,7 @@ int main(void)
 			OLED_ShowNumber(0,25,x_axis,1,12);
 			OLED_ShowNumber(15,25,y_axis,1,12); 
 			OLED_ShowNumber(65,25,block_unpack,3,12);
+			OLED_ShowNumber(45,25,(int)qr_codes,3,12);
 			//OLED_ShowNumber(30,25,black_flag,1,12);	
 			
 			//OLED_ShowNumber(60,25,target_x_err,3,12);
@@ -132,16 +136,22 @@ int main(void)
 //			servos_ready_grab();
 			if(wheel_flag==1)//按键启动
 			{
+				//time_delay(80);
 				go_to_scan_QR_1();
 				grab_task();
-				//qr_first=1;
-				//servos_put_mid_material();
-//				servos_ready_grab();
+//				
+//				//servos_put_mid_material();
+//				qr_first=3;
+//				grab(qr_first);
+////				servos_ready_grab(3);
 //				grab_mid_material();
-////				grab_firmly();//抬升
-//				servos_init(1);//左边
-//				//grab(qr_first);
-			//	wheel_flag=2;
+//				grab_firmly();//抬升
+////				servos_put_mid_material();
+////				servos_init(1);//左边
+////				//grab(qr_first);
+				//wheel_flag=2;
+				//pca_setpwm1(12,0,degree2duty_270(150));
+				//car_status.task_mode=LEFT_TRANSLATION;
 			}
 			//servos_ready_grab();
 			//grab_slowly(0,2,4,175,60);

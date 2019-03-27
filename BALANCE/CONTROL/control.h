@@ -3,14 +3,13 @@
 #include "sys.h"
 #define PI 3.14159265
 
-#define TARGET_ANGLE 183
-#define INIT_ANGLE   183
+#define RIGHT_AREA 	1 //红
+#define MID_AREA  	2 //绿
+#define LEFT_AREA 	3 //蓝
 typedef struct
 {
   uint8_t target_x;//目标位置的x轴坐标
-	uint8_t target_y;//目标位置的y轴坐标
-	 
-		
+	uint8_t target_y;//目标位置的y轴坐标 	
 } Location;
 
 extern float Straight_KP;

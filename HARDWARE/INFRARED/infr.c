@@ -7,8 +7,8 @@
 #define Y_INFR_LEFT	 PBin(15)
 #define INFR_DETECTION PAin(1)
 
-#define YAW_DELTA    0.03//0.034
-
+#define YAW_DELTA    0.02//0.034
+#define X_YAW_DELTA	 0.04
 //偏航角增量
 char single_flag=0,double_flag=0;
 char single_count=0,double_count=0;
@@ -139,7 +139,7 @@ void  EXTI15_10_IRQHandler()
 				grab_flag=1;
 				car_status.task_mode=STOP;
 			}
-			if(x_axis==0&&y_axis==0&&(car_status.task_mode==BACK)&&(circle_count==4))//回家标志位
+			if(x_axis==1&&y_axis==0&&(car_status.task_mode==BACK)&&(circle_count==4))//回家标志位
 			{
 				home_arrive_flag=1;
 				//car_status.task_mode=STOP;
@@ -226,11 +226,11 @@ void infr_control()
 		}
 		if(X_INFR_LEFT==0&&X_INFR_RIGHT==1)
 		{
-			Yaw_target-=YAW_DELTA;
+			//Yaw_target-=YAW_DELTA;
 		}
 		if(X_INFR_LEFT==1&&X_INFR_RIGHT==0)
 		{
-			Yaw_target+=YAW_DELTA;
+			//Yaw_target+=YAW_DELTA;
 		}
 	}
 //	if(car_status.line_patrol_mode==X_LINE_PATROL&&car_status.running_mode==RIGHT_TRANSLATION) //X轴巡线模式  mode=1

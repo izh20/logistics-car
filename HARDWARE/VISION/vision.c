@@ -12,6 +12,8 @@ uint32_t vision_time=0;//用于检测使视觉识别是否离线
 uint8_t counter;
 uint8_t USART2_Date[4]={0};//串口2接收到的数据
 uint8_t  USART2_RX_BUF=0;
+
+
 void USART2_IRQHandler(void)
 {	
 		u8 Res;
@@ -60,6 +62,7 @@ uint8_t qr_code_flag=1;//识别标志位 1为未识别，0为识别成功
 uint16_t target_x_err;//色块x轴误差
 //uint16_t sum=0;//校验和
 uint8_t block_code;
+char scan_block_success_flag=0;
 //int qr_first,qr_second,qr_third;//第一次抓取物块的颜色
 void get_vision_data()
 {
@@ -71,6 +74,7 @@ void get_vision_data()
 		block_code=USART2_Date[3];
 		block_unpack=Data_Transform(block_code);
 		qr_unpack=Data_Transform(qr_code);
+		scan_block_success_flag=1;//色块识别成功
 //		qr_first=qr_unpack/100;//第一次抓取物块的颜色
 //		qr_second=qr_unpack/10%10;//第二次抓取物块的颜色
 //		qr_third=qr_unpack%10;//第三次抓取物块的颜色
@@ -89,24 +93,24 @@ void grab_unpack(int qr)
 {
 	if(qr==block_unpack/100)//抓左边
 	{
-		OLED_ShowString(0,45,"l");
+		OLED_ShowString(0,55,"l");
 		grab_left_material();
+		time_delay(40);
 		grab_firmly();//抬升
-		servos_init(2);//左边
 	}
 	if(qr==block_unpack/10%10)//抓中间
 	{
-		OLED_ShowString(0,45,"m");
+		OLED_ShowString(0,55,"m");
 		grab_mid_material();
+		time_delay(40);
 		grab_firmly();//抬升
-		servos_init(1);//中间
 	}
 	if(qr==block_unpack%10)//抓右边
 	{
-		OLED_ShowString(0,45,"r");
+		OLED_ShowString(0,55,"r");
 		grab_right_material();
+		time_delay(40);
 		grab_firmly();//抬升
-		servos_init(3);//右边
 	}
 }
 /**********************************************************************************************************
@@ -117,15 +121,15 @@ void grab_unpack(int qr)
 **********************************************************************************************************/
 void put_material(int qr)
 {
-	if(qr==1)//放右边
+	if(qr==RIGHT_AREA)//放右边
 	{
 		servos_put_right_material();
 	}
-	if(qr==2)//放中间
+	if(qr==MID_AREA)//放中间
 	{
 		servos_put_mid_material();
 	}
-	if(qr==3)//放左边
+	if(qr==LEFT_AREA)//放左边
 	{
 		servos_put_left_material();
 	}
