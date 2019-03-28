@@ -27,8 +27,33 @@ Project File Date:  03/21/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-"..\OBJ\main.axf" - 0 Error(s), 0 Warning(s).
-Build Time Elapsed:  00:00:00
+compiling control.c...
+..\BALANCE\CONTROL\control.h(46): warning:  #1295-D: Deprecated declaration grab_task - give arg types
+  void grab_task();//抓取任务
+..\BALANCE\CONTROL\control.c(53): warning:  #223-D: function "get_tick" declared implicitly
+  			get_tick();//获取时间
+..\BALANCE\CONTROL\control.c(90): warning:  #223-D: function "get_tick" declared implicitly
+  	current_time=get_tick();
+..\BALANCE\CONTROL\control.c(200): warning:  #223-D: function "start_openmv" declared implicitly
+  		start_openmv();//启动openmv	
+..\BALANCE\CONTROL\control.c(289): warning:  #223-D: function "put_material" declared implicitly
+  			put_material(qr_first);//放物块
+..\BALANCE\CONTROL\control.c(306): warning:  #223-D: function "put_material" declared implicitly
+  				put_material(qr_first);//放物块
+..\BALANCE\CONTROL\control.c(348): warning:  #223-D: function "put_material" declared implicitly
+  				put_material(qr_second);
+..\BALANCE\CONTROL\control.c(363): warning:  #223-D: function "put_material" declared implicitly
+  					put_material(qr_second);//放物块
+..\BALANCE\CONTROL\control.c(402): warning:  #223-D: function "put_material" declared implicitly
+  				put_material(qr_third);
+..\BALANCE\CONTROL\control.c(418): warning:  #223-D: function "put_material" declared implicitly
+  					put_material(qr_third);//放物块
+..\BALANCE\CONTROL\control.c: 10 warnings, 0 errors
+linking...
+Program Size: Code=35998 RO-data=6314 RW-data=388 ZI-data=2836  
+FromELF: creating hex file...
+"..\OBJ\main.axf" - 0 Error(s), 10 Warning(s).
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

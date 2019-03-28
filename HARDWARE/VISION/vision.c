@@ -121,17 +121,29 @@ void grab_unpack(int qr)
 **********************************************************************************************************/
 void put_material(int qr)
 {
-	if(qr==RIGHT_AREA)//放右边
+	if(qr==FRONT_AREA)//放右边
 	{
+//		car_status.task_mode=FORWARD;
+//		time_delay(20);
+//		car_status.task_mode=STOP;
 		servos_put_right_material();
+//		car_status.task_mode=BACK;
+//		time_delay(10);
+//		car_status.task_mode=STOP;
 	}
 	if(qr==MID_AREA)//放中间
 	{
 		servos_put_mid_material();
 	}
-	if(qr==LEFT_AREA)//放左边
+	if(qr==BACK_AREA)//放左边
 	{
+//		car_status.task_mode=BACK;
+//		time_delay(30);
+//		car_status.task_mode=STOP;
 		servos_put_left_material();
+//		car_status.task_mode=FORWARD;
+//		time_delay(30);
+//		car_status.task_mode=STOP;
 	}
 	
 }

@@ -3,9 +3,12 @@
 #include "sys.h"
 #define PI 3.14159265
 
-#define RIGHT_AREA 	1 //红
-#define MID_AREA  	2 //绿
-#define LEFT_AREA 	3 //蓝
+extern char RED_AREA; //红
+extern char GREEN_AREA; //绿
+extern char BLUE_AREA; //蓝
+extern char FRONT_AREA;
+extern char MID_AREA;//
+extern char BACK_AREA;
 typedef struct
 {
   uint8_t target_x;//目标位置的x轴坐标

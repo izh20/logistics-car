@@ -7,6 +7,8 @@
 #define Y_INFR_LEFT	 PBin(15)
 #define INFR_DETECTION PAin(1)
 
+#define SPEED 650 //修正速度
+
 #define YAW_DELTA    0.02//0.034
 #define X_YAW_DELTA	 0.04
 //偏航角增量
@@ -31,7 +33,7 @@ void infr_Init()
 	GPIOB->CRL|=0X88880000;
 	GPIOB->ODR|=15<<12; //上拉
 	Ex_NVIC_Config(GPIO_A,1,RTIR);		//上升沿触发
-	Ex_NVIC_Config(GPIO_B,12,3);//上升沿触发
+	//Ex_NVIC_Config(GPIO_B,12,3);//上升沿触发
 	Ex_NVIC_Config(GPIO_B,13,3);//上升沿触发
 	Ex_NVIC_Config(GPIO_B,14,3);//上升沿触发
 	Ex_NVIC_Config(GPIO_B,15,3);//上升沿触发
@@ -62,7 +64,7 @@ void EXTI_Init(void)
 	MY_NVIC_Init(0,0,EXTI1_IRQn,2);  	//抢占0，子优先级0，组2
 	
 }
-
+u8 block_position=0;//物块位置
 u8 x_location_arrive_flag=0;//预定位置到达标志位
 u8 y_location_arrive_flag=0;
 void  EXTI15_10_IRQHandler() 
@@ -74,6 +76,16 @@ void  EXTI15_10_IRQHandler()
 				x_location_arrive_flag=1;
 				//car_status.task_mode=LEFT_TRANSLATION;
 			}
+			
+			delay_ms(10);   //消抖			 
+			if(KEY1==0)		//按键
+			{
+				LED=~LED;
+				block_position++;
+				if(block_position==7)
+					block_position=0;
+	}
+			
 			
 			EXTI->PR=1<<12;   
 		}
@@ -172,6 +184,7 @@ void EXTI1_IRQHandler(void)
 入口参数：无
 返回  值：无 
 **************************************************************************/
+
 void infr_control()
 {
 	if(car_status.line_patrol_mode==Y_LINE_PATROL&&car_status.running_mode==FORWARD) //Y轴巡线模式  车的前  mode=2
@@ -216,42 +229,53 @@ void infr_control()
 //	}
 	if(car_status.line_patrol_mode==X_LINE_PATROL&&car_status.running_mode==LEFT_TRANSLATION) //X轴巡线模式  mode=1
 	{
-		if(X_INFR_RIGHT==0&&X_INFR_LEFT==0)									//infrared遇到黑线输出低电平
+		if(X_INFR_RIGHT==0&&X_INFR_LEFT==0&&circle_count!=0)									//infrared遇到黑线输出低电平
 		{
-			
+			CAR_SPEED=LOW_SPEED;
+			chassis_left_translation();
 		}
-		if(X_INFR_LEFT==1&&X_INFR_RIGHT==1)
+		if(X_INFR_LEFT==1&&X_INFR_RIGHT==1&&circle_count!=0)
 		{
-			
+			chassis_left_translation();
 		}
-		if(X_INFR_LEFT==0&&X_INFR_RIGHT==1)
+		if(X_INFR_LEFT==0&&X_INFR_RIGHT==1&&circle_count!=0)
 		{
+			CAR_SPEED=SPEED;
+			chassis_forwrd();
 			//Yaw_target-=YAW_DELTA;
 		}
-		if(X_INFR_LEFT==1&&X_INFR_RIGHT==0)
+		if(X_INFR_LEFT==1&&X_INFR_RIGHT==0&&circle_count!=0)
 		{
+			CAR_SPEED=SPEED;
+			chassis_back();
 			//Yaw_target+=YAW_DELTA;
 		}
 	}
-//	if(car_status.line_patrol_mode==X_LINE_PATROL&&car_status.running_mode==RIGHT_TRANSLATION) //X轴巡线模式  mode=1
-//	{
-//		if(X_INFR_RIGHT==0&&X_INFR_LEFT==0)									//infrared遇到黑线输出低电平
-//		{
-//			
-//		}
-//		if(X_INFR_LEFT==1&&X_INFR_RIGHT==1)
-//		{
-//			
-//		}
-//		if(X_INFR_LEFT==0&&X_INFR_RIGHT==1)
-//		{
-//			Yaw_target+=YAW_DELTA;
-//		}
-//		if(X_INFR_LEFT==1&&X_INFR_RIGHT==0)
-//		{
-//			Yaw_target-=YAW_DELTA;
-//		}
-//	}
+	if(car_status.line_patrol_mode==X_LINE_PATROL&&car_status.running_mode==RIGHT_TRANSLATION) //X轴巡线模式  mode=1
+	{
+		if(X_INFR_RIGHT==0&&X_INFR_LEFT==0&&circle_count!=0&&circle_count!=4)									//infrared遇到黑线输出低电平
+		{
+			CAR_SPEED=LOW_SPEED;
+			chassis_right_translation();
+		}
+		if(X_INFR_LEFT==1&&X_INFR_RIGHT==1&&circle_count!=0&&circle_count!=4)
+		{
+			CAR_SPEED=LOW_SPEED;
+			chassis_right_translation();
+		}
+		if(X_INFR_LEFT==0&&X_INFR_RIGHT==1&&circle_count!=0&&circle_count!=4)
+		{
+			CAR_SPEED=SPEED;
+			chassis_forwrd();
+			//Yaw_target+=YAW_DELTA;
+		}
+		if(X_INFR_LEFT==1&&X_INFR_RIGHT==0&&circle_count!=0&&circle_count!=4)
+		{
+			CAR_SPEED=SPEED;
+			chassis_back();
+			//Yaw_target-=YAW_DELTA;
+		}
+	}
 	if(car_status.line_patrol_mode==STOP_LINE_PATROL) //停止模式
 	{
 		set_motor_pwm(0,0,0,0);

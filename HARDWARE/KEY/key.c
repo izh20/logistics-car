@@ -8,14 +8,25 @@
 入口参数：无
 返回  值：无 
 **************************************************************************/
+
 void KEY_Init(void)
 {
 	RCC->APB2ENR|=1<<2;               //使能PORTA时钟	   	 
 	GPIOA->CRL&=0XFF0FFFFF;           
 	GPIOA->CRL|=0X00800000;           //PA5 上拉输入
   GPIOA->ODR|=1<<15;                //PA5 上拉	
+	
+	GPIOA->CRH&=0XFFF0FFFF;           
+	GPIOA->CRH|=0X00080000;           //PA5 上拉输入
+  GPIOA->ODR|=1<<12;                //PA5 上拉	
+	Ex_NVIC_Config(GPIO_A,12,FTIR);		//下降沿触发
+	
 	Ex_NVIC_Config(GPIO_A,5,FTIR);		//下降沿触发
+	
+	
 	MY_NVIC_Init(2,1,EXTI9_5_IRQn,2);  	//抢占2，子优先级1，组2
+	
+	MY_NVIC_Init(2,1,EXTI15_10_IRQn,2);  	//抢占2，子优先级1，组2
 } 
 /**************************************************************************
 函数功能：外部中断读取按键状态

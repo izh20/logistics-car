@@ -54,7 +54,7 @@ void TIM1_UP_IRQHandler(void)
 			//Get_Angle(Way_Angle);                                    //===更新姿态	
 			
 		
-		if(cnt%5500==0)
+		if(cnt%1500==0)
 			TARGET_ANGLE++;
 		
 		if(cnt==200)
@@ -173,6 +173,7 @@ void go_to_scan_QR()
 }
 extern char scan_block_success_flag;//色块识别成功标志位
 char start_task=0;//开始任务
+char circle_count=0;//循环次数  三个物块共三个循环
 void go_to_scan_QR_1()
 {
 if(start_task==0)
@@ -197,22 +198,21 @@ if(start_task==0)
 	if(x_axis==2)//即将到达物料区域
 	{
 		start_openmv();//启动openmv	
-		
 	}
 	if(x_axis==3)
 	{
-		CAR_SPEED=900;
+		CAR_SPEED=800;
                                                                                          
 	}
 	if(x_axis==4&&qr_location_arrive_flag==0)//到达二维码区域
 	{
-		time_delay(80);
+		time_delay(150);
 		car_status.task_mode=STOP;//停下来扫二维码		
 	}
-	if(scan_qr_success_flag==1)//二维码扫描成功
+	if(scan_qr_success_flag==1&&scan_block_success_flag==1)//二维码扫描成功
 	{
-//		car_status.task_mode=BACK;
-//		time_delay(20);
+		car_status.task_mode=BACK;
+		time_delay(50);
 		qr_location_arrive_flag=1;
 		
 		scan_block_success_flag=0;//视觉识别标志位
@@ -222,20 +222,18 @@ if(start_task==0)
 	{	
 			Yaw_target=INIT_ANGLE;
 			car_status.task_mode=RIGHT_TRANSLATION;
-		
-			
-		
 			CAR_SPEED=HIGH_SPEED;//离开二维码区域后减速
 			qr_task_finish=1;
 			qr_location_arrive_flag=3;
 			servos_ready_grab(qr_first);
 		
 		start_task=1;//结束任务
+		circle_count=1;
 	}		
 }
 }
 char home_arrive_flag=0;//到家标志位
-char circle_count=1;//循环次数  三个物块共三个循环
+
 char grab_flag=0;//抓取标志位
 char place_flag=0;//放置标志位
 char material_arrive_flag=0;
@@ -299,11 +297,14 @@ if(circle_count==1)//第一次循环
 		{
 			if(x_axis==4&&y_axis==2)
 			{
+				//time_delay(15);
 				car_status.task_mode=STOP;
-				time_delay(50);
+				//time_delay(50);
+				car_status.task_mode=BACK;
+				time_delay(25);
+				car_status.task_mode=STOP;
 				put_material(qr_first);//放物块
 				time_delay(50);
-				
 				
 				
 				place_flag=0;
@@ -353,8 +354,12 @@ if(circle_count==1)//第一次循环
 			{
 				if(x_axis==4&&y_axis==2)
 				{
+					//time_delay(15);
 					car_status.task_mode=STOP;
-					time_delay(50);
+					//time_delay(20);
+					car_status.task_mode=BACK;
+					time_delay(25);
+					car_status.task_mode=STOP;
 					put_material(qr_second);//放物块
 					time_delay(50);
 					
@@ -404,8 +409,12 @@ if(circle_count==1)//第一次循环
 			{
 				if(x_axis==4&&y_axis==2)
 				{
+					//time_delay(15);
 					car_status.task_mode=STOP;
-					time_delay(50);
+					//time_delay(50);
+					car_status.task_mode=BACK;
+					time_delay(25);
+					car_status.task_mode=STOP;
 					put_material(qr_third);//放物块
 					time_delay(50);
 					place_flag=0;
@@ -430,22 +439,23 @@ if(circle_count==1)//第一次循环
 //				delay_ms(600);
 				Yaw_target=TARGET_ANGLE;//后退不循线  用陀螺仪走直线
 				car_status.task_mode=BACK;
-				CAR_SPEED=1100;
+				CAR_SPEED=1500;
 				grab_flag=0;
 			}
 			if(x_axis==1&&car_status.task_mode==BACK)
 			{
-				CAR_SPEED=800;
+				time_delay(80);
+				CAR_SPEED=700;
 				
 			}
 			if(home_arrive_flag==1)//即将到达HOME
 			{
-				time_delay(100);
+				time_delay(80);
 				car_status.task_mode=STOP;
 				time_delay(10);
 				Yaw_target=TARGET_ANGLE;
 				car_status.task_mode=RIGHT_TRANSLATION;//右平移
-				CAR_SPEED=HIGH_SPEED;
+				CAR_SPEED=1900;
 				time_delay(300);
 				home_arrive_flag=2;
 			}
@@ -577,7 +587,7 @@ void car_locate()
 				 {	
 					 
 					 time_flag=1;
-					 if(locate_delay==55) //延时0.15秒  小车在1秒内必须通过双线或单线   ///这里有问题
+					 if(locate_delay==47) //延时0.15秒  小车在1秒内必须通过双线或单线   ///这里有问题  52
 					 {
 						 locate_delay=0;
 						 black_flag=0;
@@ -638,6 +648,12 @@ void car_locate()
 入口参数：
 返回  值：无
 **************************************************************************/
+char RED_AREA=1; //红
+char GREEN_AREA=2; //绿
+char BLUE_AREA=3; //蓝
+char FRONT_AREA=1;
+char MID_AREA=2;//
+char BACK_AREA=3;
 void car_mode_select()
 {
 	#ifdef TEST_MODE
@@ -686,6 +702,51 @@ void car_mode_select()
 		car_status.line_patrol_mode=STOP_LINE_PATROL;  //停止巡线
 		car_status.running_mode=STOP;
 	}
+	
+	if(block_position==1)
+	{
+		FRONT_AREA=1; //前
+		MID_AREA=2; //中
+		BACK_AREA=3; //后
+	}
+	if(block_position==2)
+	{
+		FRONT_AREA=1; //前
+		MID_AREA=3; //后
+		BACK_AREA=2; //中
+	}
+	if(block_position==3)
+	{
+		FRONT_AREA=2; //中
+		MID_AREA=1; //前
+		BACK_AREA=3; //后
+	}
+	if(block_position==4)
+	{
+		FRONT_AREA=2; //中
+		MID_AREA=3; //后
+		BACK_AREA=1; //前
+	}
+	if(block_position==5)
+	{
+		FRONT_AREA=3; //后
+		MID_AREA=1; //前
+		BACK_AREA=2; //中
+	}
+	if(block_position==6)
+	{
+		FRONT_AREA=3; //后
+		MID_AREA=2; //中
+		BACK_AREA=1; //前
+	}
+	if(block_position==0)
+	{
+		FRONT_AREA=3; //前
+		MID_AREA=2; //中
+		BACK_AREA=1; //后
+	}
+	
+	
 	#endif
 }
 

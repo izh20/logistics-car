@@ -31,6 +31,7 @@ extern u8 y_location_arrive_flag;
 extern u8 x_location_arrive_flag;
 extern char model;
 extern int black_line,black_flag;//当为1时，表示检测到单线，为2时表示检测到双线
+extern u8 block_position;//物块位置
 void infr_Init(void);
 void infr_control(void);
 void EXTI_Init(void);

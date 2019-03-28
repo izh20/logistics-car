@@ -1,7 +1,7 @@
 #include "servos.h"
 
-#define OPEN_CLAW 90
-#define CLOSE_CLAW 150
+#define OPEN_CLAW 87
+#define CLOSE_CLAW 160
 SERVOS servos_yaw,servos_pitch1,servos_pitch2,servos_claw;
 
 /**************************************************************************
@@ -47,7 +47,7 @@ int degree2duty_180(int degree)
 void servos_put_mid_material()
 {
 	time_delay(20);
-	pca_setpwm1(0,0,degree2duty_270(95));
+	pca_setpwm1(0,0,degree2duty_270(97));
 	pca_setpwm1(4,0,degree2duty_270(5));//2ºÅ»úÐµ±Û
 	grab_slowly(8,2,1,20,150);//·Å3ºÅ»úÐµ±Û
 	time_delay(80);
@@ -64,9 +64,8 @@ void servos_put_mid_material()
 
 void servos_put_left_material()
 {
-	//pca_setpwm1(0,0,degree2duty_270(100));
 	time_delay(20);
-	pca_setpwm1(0,0,degree2duty_270(160));
+	pca_setpwm1(0,0,degree2duty_270(155));
 	pca_setpwm1(4,0,degree2duty_270(5));//2ºÅ»úÐµ±Û
 	grab_slowly(8,2,1,20,150);//·Å3ºÅ»úÐµ±Û
 	time_delay(80);
@@ -99,14 +98,13 @@ void servos_put_right_material()
 
 void grab_right_material()
 {
-			pca_setpwm1(0,0,degree2duty_270(55));
-			time_delay(20);
+			
 			pca_setpwm1(0,0,degree2duty_270(60));
 			pca_setpwm1(8,0,degree2duty_270(60));  //140 - 0  300 - 90			
 			time_delay(20);
 			pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
 			time_delay(20);
-			grab_slowly(4,2,1,35,85);
+			grab_slowly(4,2,1,35,92);
 			//pca_setpwm1(4,0,degree2duty_270(70));
 			//time_delay(60);
 			
@@ -114,14 +112,14 @@ void grab_right_material()
 }
 void grab_left_material()
 {
-		pca_setpwm1(0,0,degree2duty_270(125));
+		pca_setpwm1(0,0,degree2duty_270(129));
 		time_delay(20);
-		pca_setpwm1(0,0,degree2duty_270(125));
+		pca_setpwm1(0,0,degree2duty_270(129));
 		pca_setpwm1(8,0,degree2duty_270(60));  //140 - 0  300 - 90		
 		time_delay(20);
 		pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
 		time_delay(20);
-		grab_slowly(4,2,2,35,87);
+		grab_slowly(4,2,2,35,92);
 		//pca_setpwm1(4,0,degree2duty_270(65));
 		//time_delay(40);
 		
@@ -134,7 +132,7 @@ void grab_mid_material()
 		pca_setpwm1(0,0,degree2duty_270(95));
 		time_delay(20);
 		pca_setpwm1(0,0,degree2duty_270(95));
-		pca_setpwm1(8,0,degree2duty_270(50));  //140 - 0  300 - 90
+		pca_setpwm1(8,0,degree2duty_270(45));  //140 - 0  300 - 90
 		time_delay(20);
 		pca_setpwm1(12,0,degree2duty_270(OPEN_CLAW));
 		time_delay(20);
